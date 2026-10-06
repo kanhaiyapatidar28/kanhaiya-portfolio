@@ -1,0 +1,133 @@
+2026-04-19T15:36:52Z | b226aeef-82ef-4f07-bf12-9ece2e0b71cc | <USER_REQUEST> redirect on same login page </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-04-19T21:06:52+05:30.  The user's current state is as follows: Active Document: d:\Tool Sharing Platform\server\core\views.py (LANGUAGE_PYTHON) Cursor is on line: 250 Other open documents
+
+2026-04-22T08:58:34Z | 6f2fcab3-c8af-40a4-aeb7-6a46f4c398d3 | <USER_REQUEST> open website </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-04-22T14:28:34+05:30.  The user's current state is as follows: Active Document: d:\Tool Sharing Platform\server\core\migrations\0003_booking_late_penalty_booking_payment_id_and_more.py (LANGUAGE_PYTHON)
+
+2026-04-22T09:34:52Z | 07166552-8fed-491a-a5f6-066f2266350e | <USER_REQUEST> my credentials are for renter and borrower are : kanheyapatidar32@gmail.com, password : 12345678#@K, and rajkumarji3254616@gmail.com, password : 12345678#@, and my backend server is running on attached image and frontend is running or 5000 or may be 3000, so open my website </USER_REQ
+
+2026-04-25T11:18:34Z | 332d3f6b-f4d2-43d2-a699-335f16990738 | <USER_REQUEST> You are a senior full-stack software engineer. Build a complete, production-ready software system for an "AI-Enabled Smart Street Lighting System with Real-Time Fault Detection and Hybrid Management" for Indian smart cities. This is a minor engineering project that must be hardware-re
+
+2026-04-26T17:35:14Z | 8b9b072d-5d74-47c3-b0c6-2c868c2f8713 | <USER_REQUEST> You are a senior frontend engineer. I am building a React + Vite  municipal dashboard for an "AI-Enabled Smart Street Lighting System".  Do ONLY Step 1 — project setup and configuration files.  Generate these files completely with full content:  1. package.json    Dependencies needed:
+
+2026-04-27T05:51:37Z | 9fe56e03-3190-471b-bca0-114fd9b6ad63 | <USER_REQUEST> open website </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-04-27T11:21:37+05:30.  The user's current state is as follows: Active Document: d:\Tool Sharing Platform\server\core\migrations\0003_booking_late_penalty_booking_payment_id_and_more.py (LANGUAGE_PYTHON)
+
+2026-04-27T07:01:21Z | 2c9d364e-af00-4f95-989b-1578592d05fc | <USER_REQUEST> open website </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-04-27T12:31:21+05:30.  The user's current state is as follows: Other open documents: - d:\Tool Sharing Platform\client\payment.html (LANGUAGE_HTML) - d:\Tool Sharing Platform\client\help.html (LANGUAGE_
+
+2026-04-28T06:58:19Z | be781d8d-7e0f-4462-bc5e-df9a3bcc6536 | <USER_REQUEST> Smart Pill Dispenser IoT Healthcare App – Complete Development Prompt 📋 Executive Summary Build a production-grade cross-platform healthcare application for managing smart pill dispensers with real-time IoT connectivity. The app enables patients to receive medication reminders, track
+
+2026-05-04T08:27:09Z | ff9af60a-81e7-49dd-9740-925f73c549a0 | <USER_REQUEST> PS D:\Smart Pill Adherence system> npm run dev npm error code ENOENT npm error syscall open npm error path D:\Smart Pill Adherence system\package.json npm error errno -4058 npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open 'D:\Smart Pill Adhe
+
+2026-05-04T10:07:20Z | b068d7c5-621b-400a-af72-bf3cad5c3d7e | <USER_REQUEST> @[d:\Medicare Adherence System\files (2)\superpower.md]@[d:\Medicare Adherence System\files (2)\skill.md] @[d:\Medicare Adherence System\agenthandover (2).js]   using this filecraete the implementataion plan ofr thr frontend  </USER_REQUEST> <ADDITIONAL_METADATA> The current local tim
+
+2026-05-04T16:24:38Z | 93f20206-1c2e-4ec0-92a2-7bc852e1830d | <USER_REQUEST> PS D:\Medicare Adherence System> npm run dev npm error code ENOENT npm error syscall open npm error path D:\Medicare Adherence System\package.json npm error errno -4058 npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open 'D:\Medicare Adherence 
+
+2026-05-06T09:30:44Z | 51396683-1949-49db-be09-1b6ed15120c5 | <USER_REQUEST> where i can edit layout of background image </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-06T15:00:44+05:30.  The user's current state is as follows: Active Document: d:\Medicare Adherence System\files (2)\superpower.md (LANGUAGE_MARKDOWN) Cursor is on line:
+
+2026-05-06T10:31:10Z | 2a31307d-78fe-42f8-be8e-23210e358937 | <USER_REQUEST> change the name of the website with aarogyam  </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-06T16:01:10+05:30.  The user's current state is as follows: Active Document: d:\Medicare Adherence System\frontend\src\pages\public\LandingPage.jsx (LANGUAGE_JAVASCRI
+
+2026-05-06T11:19:58Z | 41ef8992-da29-4140-96d5-816575e0554d | <USER_REQUEST> PS D:\Smart Pill Adherence system> npm run dev npm error code ENOENT npm error syscall open npm error path D:\Smart Pill Adherence system\package.json npm error errno -4058 npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open 'D:\Smart Pill Adhe
+
+2026-05-06T11:23:07Z | cbbd5466-b145-4aba-a905-a9fc2311b993 | <USER_REQUEST> PS D:\Medicare Adherence System> npm run dev npm error code ENOENT npm error syscall open npm error path D:\Medicare Adherence System\package.json npm error errno -4058 npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open 'D:\Medicare Adherence 
+
+2026-05-06T13:15:38Z | d26675c0-dedf-4893-9488-182eabcb03ae | <USER_REQUEST> PS D:\Medicare Adherence System> npm run dev npm error code ENOENT npm error syscall open npm error path D:\Medicare Adherence System\package.json npm error errno -4058 npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open 'D:\Medicare Adherence 
+
+2026-05-07T16:03:58Z | 365863f7-ee53-4264-bfbd-96dc0869f326 | <USER_REQUEST> open website </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-07T21:33:58+05:30.  The user's current state is as follows: Active Document: d:\Medicare Adherence System\frontend\src\components\ui\LogoLoop.jsx (LANGUAGE_JAVASCRIPT) Cursor is on line: 1 Other open
+
+2026-05-09T05:45:24Z | 4f35a7a0-7fda-4a4c-acac-10f161ef6dde | <USER_REQUEST> open website </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-09T11:15:24+05:30.  The user's current state is as follows: Active Document: d:\Real-Time Healthcare Resource Sharing System\index.html (LANGUAGE_HTML) Cursor is on line: 1 Other open documents: - d:
+
+2026-05-11T06:51:06Z | f1601309-1f4e-4eb5-8d4c-f7a5dd83fd36 | <USER_REQUEST> Build a modern, futuristic, responsive frontend web application for a project named “Crowdsourced Civic Issue Reporting and Resolution System with IoT Automation”.  The website should look like a professional smart-city SaaS platform with clean UI, glassmorphism effects, smooth animat
+
+2026-05-11T11:11:24Z | 90e8452a-00a0-4576-b648-899feb4b8820 | <USER_REQUEST> PS D:\Medicare Adherence System> npm run dev npm error code ENOENT npm error syscall open npm error path D:\Medicare Adherence System\package.json npm error errno -4058 npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open 'D:\Medicare Adherence 
+
+2026-05-11T15:55:18Z | 56a49b0e-f1cf-413f-b797-8ff1476793bf | <USER_REQUEST> now convert it into : For your React + Vite implementation, your project architecture should look like a real industrial smart-city dashboard system.  Recommended stack for your project:  React Vite Tailwind CSS Firebase React Router Leaflet Recharts Recommended React + Vite Project S
+
+2026-05-11T17:29:33Z | 9497bc52-bc9c-45fd-b784-6fd1565a03ab | <USER_REQUEST> can you convert it into react + vite </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-11T22:59:33+05:30.  The user's current state is as follows: Other open documents: - d:\TeraBoxDownload\NewCivicTracker\CivicTracker\src\index.css (LANGUAGE_CSS) - d:\TeraBoxDo
+
+2026-05-12T15:21:28Z | 883563e3-35f1-4480-8657-3b83f5429178 | <USER_REQUEST> PS D:\2ool Sharing platform> npm run dev npm error code ENOENT npm error syscall open npm error path D:\2ool Sharing platform\package.json npm error errno -4058 npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open 'D:\2ool Sharing platform\packa
+
+2026-05-12T15:25:44Z | c08e64e1-3b48-4bc4-84ca-4b1660140410 | <USER_REQUEST> open website </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-12T20:55:44+05:30.  The user's current state is as follows: Active Document: d:\2ool Sharing platform\server\public\js\main.js (LANGUAGE_JAVASCRIPT) Cursor is on line: 1 Other open documents: - d:\2o
+
+2026-05-12T15:33:55Z | 1b0d0295-d538-4ffc-b85f-99e37d83af64 | <USER_REQUEST> Page not found (404) Request Method:	GET Request URL:	http://127.0.0.1:8000/ Using the URLconf defined in toolshare.urls, Django tried these URL patterns, in this order:  admin/ api/ The empty path didn’t match any of these.  You’re seeing this error because you have DEBUG = True in y
+
+2026-05-12T15:51:03Z | cb85abcc-d85f-4f7e-aaa5-27c209d16011 | <USER_REQUEST> Login failed Could not connect to the server at http://127.0.0.1:8000. Please ensure the Django backend is running. </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-12T21:21:03+05:30.  The user's current state is as follows: Active Document: d:\2ool Sharing pla
+
+2026-05-12T16:41:50Z | e368d706-34f5-442f-9145-4ae3cb708d53 | <USER_REQUEST> i want this in my landing home page </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-12T22:11:50+05:30.  The user's current state is as follows: Active Document: d:\Tool Sharing Platform\client\package.json (LANGUAGE_JSON) Cursor is on line: 12 Other open docum
+
+2026-05-12T17:52:16Z | 50df1b4e-1411-492c-88e7-78c432131ba1 | <USER_REQUEST>  npx shadcn@latest add @react-bits/ColorBends-JS-TW, import ColorBends from './ColorBends';    <ColorBends   colors={["#ff5c7a", "#8a5cff", "#00ffd1"]}   rotation={90}   speed={0.2}   scale={1}   frequency={1}   warpStrength={1}   mouseInfluence={1}   noise={0.15}   parallax={0.5}   i
+
+2026-05-12T18:06:11Z | ea4d66a0-97fe-4baa-8f18-177fcc20fda5 | <USER_REQUEST> npx shadcn@latest add @react-bits/PixelBlast-JS-TW, // Component inspired by github.com/zavalit/bayer-dithering-webgl-demo    import PixelBlast from './PixelBlast';  <div style={{ width: '100%', height: '600px', position: 'relative' }}>   <PixelBlast     variant="square"     pixelSize
+
+2026-05-13T20:00:50Z | b7c0b596-046a-442d-9da3-b3f2851236ae | <USER_REQUEST> also implement login, signup logic with backend and database as per each role : admin, municipal, technician, citizen </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-14T01:30:50+05:30.  The user's current state is as follows: Active Document: d:\CivicSense\Civ
+
+2026-05-13T22:11:47Z | af9a9d27-885e-44e9-b990-4638984d1c6c | <USER_REQUEST> mere fronted ko backend se integrate kr diya hei now ab tum mere frontend ki end to end testing kro testing mei har chixx cpover honi chchiye har ek card har ek function maylab har ek chizz start register se karna one by one register karna then login karna then us portel ke sare funct
+
+2026-05-18T04:27:00Z | a15ea289-4163-42b7-9ee5-c5992adf7f49 | <USER_REQUEST> open website </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-18T09:57:00+05:30.  The user's current state is as follows: Other open documents: - d:\CivicSense\src\routes\ProtectedRoute.jsx (LANGUAGE_JAVASCRIPT) - d:\CivicSense\src\context\AuthContext.jsx (LANG
+
+2026-05-18T06:29:50Z | 6e587610-4d30-4553-a27e-c64ef632ff6a | <USER_REQUEST> ❌ Login failed Request failed with status 403 </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-18T11:59:50+05:30.  The user's current state is as follows: Active Document: d:\Tool Sharing Platform\client\index.html (LANGUAGE_HTML) Cursor is on line: 1 Other ope
+
+2026-05-18T06:55:04Z | c0a00ff4-4bc2-423f-aafa-0f75f793ba0d | <USER_REQUEST>  Failed to publish Request failed with status 400 </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-18T12:25:04+05:30.  The user's current state is as follows: Active Document: d:\Tool Sharing Platform\client\index.html (LANGUAGE_HTML) Cursor is on line: 1 Other
+
+2026-05-18T07:04:56Z | 903b0c4d-be77-4eb6-9203-490d3d81ba81 | <USER_REQUEST> same redirect on login page issue </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-18T12:34:56+05:30.  The user's current state is as follows: Active Document: d:\Tool Sharing Platform\client\index.html (LANGUAGE_HTML) Cursor is on line: 1 Other open documents:
+
+2026-05-19T19:29:54Z | bf4e7cb1-550f-463a-b794-ff8d2d727a0e | <USER_REQUEST> open </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-20T00:59:54+05:30.  The user's current state is as follows: No browser pages are currently open. </ADDITIONAL_METADATA> <USER_SETTINGS_CHANGE> The user changed setting `Model Selection` from None to Gemini 3
+
+2026-05-23T04:33:37Z | 7d64d760-2bb0-4ddb-8e15-862a5f15a1b5 | <USER_REQUEST> i want my landing page look like this, use this image on the place of Rod of Asclepius @[d:\Real-Time Healthcare Resource Sharing System\assets\images\pp.png]  </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-23T10:03:37+05:30.  The user's current state is as f
+
+2026-05-31T16:49:18Z | 5f42b0d5-bf95-45b4-bd8b-3a4bec2cc34a | <USER_REQUEST> open website </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-05-31T22:19:18+05:30.  The user's current state is as follows: Active Document: d:\Real-Time Healthcare Resource Sharing System\supervisor-portal.html (LANGUAGE_HTML) Cursor is on line: 1 Other open doc
+
+2026-05-31T18:39:15Z | e0088174-ad31-4c46-a8c1-f9bdc32cf29c | <USER_REQUEST> logo is appear on full screen </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-06-01T00:09:15+05:30.  The user's current state is as follows: Active Document: d:\my-portfolio\src\components\Navbar.jsx (LANGUAGE_JAVASCRIPT) Cursor is on line: 1 Other open documents
+
+2026-06-01T07:58:20Z | 6adaf5c3-a5bb-44cc-9f1c-979fab6dcc22 | <USER_REQUEST> i want my home page look like this </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-06-01T13:28:20+05:30.  The user's current state is as follows: Other open documents: - d:\my-portfolio\src\components\Navbar.jsx (LANGUAGE_JAVASCRIPT) - d:\my-portfolio\src\compone
+
+2026-06-16T22:37:16Z | 2290a735-87ed-4c15-97fa-0e2375d81b66 | <USER_REQUEST> Create a full-stack Security Vulnerability Scanner project with this structure:  - scanner-engine/ → Python + Flask (core scanning microservice) - backend/ → Django + DRF + Celery + PostgreSQL (API, auth, jobs, reports) - frontend/ → React + Vite + Tailwind CSS (dashboard UI)  Set up 
+
+2026-06-18T16:16:58Z | 9ec517e9-4a23-4646-af8c-f170fd42df9a | <USER_REQUEST> PS D:\2Minor Project> npm run dev npm error Missing script: "dev" npm error npm error To see a list of scripts, run: npm error   npm run npm error A complete log of this run can be found in: C:\Users\kanheya\AppData\Local\npm-cache\_logs\2026-06-18T16_16_40_723Z-debug-0.log </USER_REQ
+
+2026-07-05T14:36:12Z | e3203656-27ec-48a2-8cc8-97a9a50026c4 | <USER_REQUEST> 1. One-line pitch  A marketplace where saree stores list their entire collection online, and shoppers upload one photo of themselves to virtually try on every saree in that collection before ordering it to their address.  2. Two sides of the platform  Store side — a saree shop owner c
+
+2026-07-05T15:24:48Z | e8ebb2b3-aeb9-4345-a063-2c66c07951e0 | <USER_REQUEST> 1. One-line pitch  A marketplace where saree stores list their entire collection online, and shoppers upload one photo of themselves to virtually try on every saree in that collection before ordering it to their address.  2. Two sides of the platform  Store side — a saree shop owner c
+
+2026-07-05T18:14:33Z | 1bb7f484-5e2d-4f24-9a73-5b4fe08c22e3 | <USER_REQUEST> make better smooth authentication  </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-07-05T23:44:33+05:30.  The user's current state is as follows: Other open documents: - d:\Try-on\frontend\src\pages\Storefront.jsx (LANGUAGE_JAVASCRIPT) - d:\Try-on\frontend\index.
+
+2026-07-05T19:33:07Z | 5b126660-1335-4203-b93d-0a5d43bc3fdc | <USER_REQUEST> i want like this same to same style in full website colour, ui ux all things </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-07-06T01:03:07+05:30.  The user's current state is as follows: Other open documents: - d:\Try-on\frontend\index.html (LANGUAGE_HTML) - d:\
+
+2026-07-05T20:26:54Z | 97b2f6b9-00fe-46f2-bf7f-4ceb5000fb95 | <USER_REQUEST> @[d:\Try-on\frontend\src\assets\Royal Crimson Banarasi Saree.jpeg] replace this with this @[d:\Try-on\frontend\src\assets\Royal Crimson Banarasi Saree.png]  </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-07-06T01:56:54+05:30.  The user's current state is as foll
+
+2026-07-05T20:47:22Z | 367792bc-45d7-4896-ac02-8af64ebb9255 | <USER_REQUEST> @[d:\Try-on\frontend\src\assets\background 1.png]  use this image in the background image of home page   </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-07-06T02:17:22+05:30.  The user's current state is as follows: Other open documents: - d:\Try-on\frontend\src\
+
+2026-07-05T20:50:31Z | 72a24a0d-d412-4a59-b980-ea9e21d637db | <USER_REQUEST>  use this image in the background image of home page i want it also scroll with lnding page @[d:\Try-on\frontend\src\assets\background 1.png]  </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-07-06T02:20:31+05:30.  The user's current state is as follows: Other ope
+
+2026-07-05T21:06:01Z | d130c052-9e64-4d61-8da0-79b582a7ac27 | <USER_REQUEST>  use this image in the background image of home page i want it also scroll with lnding page @[d:\Try-on\frontend\src\assets\background 1.png]  </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-07-06T02:36:01+05:30.  The user's current state is as follows: Other ope
+
+2026-07-05T21:25:35Z | 2e8bf0d6-4a28-4ee7-9444-fa9b9c70e434 | <USER_REQUEST> change the background of live fit overlay section in landing page with this @[d:\Try-on\frontend\src\assets\background 2.png]    </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-07-06T02:55:35+05:30.  The user's current state is as follows: Other open documents: -
+
+2026-07-05T21:38:44Z | 8b8d6660-920d-4552-b725-fb364018aa41 | <USER_REQUEST> change the background of live fit overlay section in landing page with this @[d:\Try-on\frontend\src\assets\background 2.png]  </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-07-06T03:08:44+05:30.  The user's current state is as follows: Other open documents: - d
+
+2026-07-08T09:45:18Z | 5645c740-f339-4ea2-aef7-5348044e0d87 | <USER_REQUEST> open website  </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-07-08T15:15:18+05:30.  The user's current state is as follows: Other open documents: - d:\my-portfolio\src\components\Hero.jsx (LANGUAGE_JAVASCRIPT) - d:\my-portfolio\src\components\Navbar.jsx (LANGUAG
+
+2026-07-14T16:59:39Z | c58bf31d-d511-4429-b90c-ad548d06f3ce | <USER_REQUEST> open website </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-07-14T22:29:39+05:30.  The user's current state is as follows: No browser pages are currently open. </ADDITIONAL_METADATA> <USER_SETTINGS_CHANGE> The user changed setting `Model Selection` from None to 
+
+2026-07-14T17:20:39Z | 8cbe28ec-1680-44c5-8660-a1658af94b1a | <USER_REQUEST> open website </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-07-14T22:50:39+05:30.  The user's current state is as follows: Other open documents: - d:\Try-on\backend\package.json (LANGUAGE_JSON) - d:\Try-on\frontend\src\pages\Login.jsx (LANGUAGE_JAVASCRIPT) - d:\
+
+2026-07-20T08:40:13Z | f967fc5c-96d4-4cfc-a17a-56e810cd47c6 | <USER_REQUEST> S D:\Try-on> npm run dev npm error code ENOENT npm error syscall open npm error path D:\Try-on\package.json npm error errno -4058 npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open 'D:\Try-on\package.json' npm error enoent This is related to n
+
+2026-07-21T08:17:36Z | 7b1a3db6-ad37-4878-972d-769bd75eda39 | <USER_REQUEST>  (venv) PS D:\Evalpro\evalpro\backend> pip install crosheaders ERROR: Could not find a version this eror is come fix that abdb run the server </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-07-21T13:47:36+05:30.  The user's current state is as follows: Active Doc
+
+2026-07-23T07:27:36Z | 6fb112b1-8b28-4546-9deb-a5c68d16bb98 | <USER_REQUEST> fix project section </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-07-23T12:57:36+05:30.  The user's current state is as follows: Active Document: d:\Evalpro\evalpro\backend\.env (LANGUAGE_UNSPECIFIED) Cursor is on line: 1 Other open documents: - d:\my-portfolio
+
+2026-08-10T08:32:09Z | d43248f3-00af-496d-aa1c-d312b48de6a1 | <USER_REQUEST> open portfolio </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-08-10T14:02:09+05:30.  The user's current state is as follows: No browser pages are currently open. </ADDITIONAL_METADATA> <USER_SETTINGS_CHANGE> The user changed setting `Model Selection` from None t
+
+2026-08-10T08:37:33Z | 2e108ebe-be44-4dd6-9eb9-0babdc17359e | <USER_REQUEST> This site can’t be reached localhost refused to connect. Try:  Checking the connection Checking the proxy and the firewall ERR_CONNECTION_REFUSED  </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-08-10T14:07:33+05:30.  The user's current state is as follows: Other
+
+2026-08-10T08:53:43Z | 1841cf3c-ce41-4e43-81ab-30c6ef70953f | <USER_REQUEST> open website vportfolio </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-08-10T14:23:43+05:30.  The user's current state is as follows: No browser pages are currently open. </ADDITIONAL_METADATA> <USER_SETTINGS_CHANGE> The user changed setting `Model Selection` fr
+
+2026-08-10T09:06:37Z | 0214f129-244c-4fb6-8a07-2485d1392f1c | <USER_REQUEST> @[d:\my-portfolio\public\floating photo.png] i want to shift this in littile bit left </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-08-10T14:36:37+05:30.  The user's current state is as follows: Other open documents: - d:\my-portfolio\public\resume.pdf (LANGUAG
+
+2026-08-10T09:33:21Z | da73e117-ad91-470e-8f24-4db57dd7ea06 | <USER_REQUEST> @[d:\my-portfolio\public\floating photo.png] shift it into littile bit left </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-08-10T15:03:21+05:30.  The user's current state is as follows: Other open documents: - d:\my-portfolio\src\components\Contact.jsx (LANGUAGE
+
+2026-08-12T14:14:49Z | af00b36e-cc45-4949-af5d-276afeffedf0 | <USER_REQUEST> open website </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-08-12T19:44:49+05:30.  The user's current state is as follows: No browser pages are currently open. </ADDITIONAL_METADATA> <USER_SETTINGS_CHANGE> The user changed setting `Model Selection` from None to 
+
+2026-08-12T14:23:04Z | 04a31a40-f9b1-46be-b4d7-cb2d3aaa4ffe | <USER_REQUEST> open website </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-08-12T19:53:04+05:30.  The user's current state is as follows: Browser State:   Page 1BADE634658035B7A69A4DB9184253D1 (my-portfolio) - http://localhost:5173/ [ACTIVE]     Viewport: 1454x829, Page Height
+
+2026-08-12T14:48:46Z | 3e4d3893-1cb1-472e-aedd-3a8d4bdd292d | <USER_REQUEST> open website which is you know last time that have @[d:\my-portfolio\public\floating photo.png] @[d:\my-portfolio\public\Kanhaiya Patidar Final Resume.pdf] @[d:\my-portfolio\public\profile_transparent.png] @[d:\my-portfolio\public\Portfolio logo.png] @[d:\my-portfolio\public\floating 
+
+2026-08-13T15:15:44Z | 4b36349c-cd2f-41d9-8a12-9fcd26fc37a2 | <USER_REQUEST> redu website upto 1 july 2026 </USER_REQUEST> <ADDITIONAL_METADATA> The current local time is: 2026-08-13T20:45:44+05:30.  The user's current state is as follows: Other open documents: - d:\my-portfolio\src\components\Achievements.jsx (LANGUAGE_JAVASCRIPT) - d:\my-portfolio\src\App.js

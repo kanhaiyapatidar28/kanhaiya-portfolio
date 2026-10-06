@@ -61,6 +61,7 @@ class X {
     this.onAfterRender = () => {};
     this.onAfterResize = () => {};
     this.isDisposed = false;
+    this.maxPixelRatio = 1.5;
 
     this.#initCamera();
     this.#initScene();
@@ -87,10 +88,14 @@ class X {
         this.canvas = elem;
       }
     }
+    if (!this.canvas) {
+      throw new Error("No canvas element available for Ballpit");
+    }
     this.canvas.style.display = 'block';
     const rendererOptions = {
       canvas: this.canvas,
-      powerPreference: 'high-performance',
+      powerPreference: 'default',
+      failIfMajorPerformanceCaveat: false,
       ...(this.#config.rendererOptions ?? {})
     };
     this.renderer = new WebGLRenderer(rendererOptions);
@@ -586,20 +591,50 @@ class Z extends Group {
   }
 }
 
+function isWebGLAvailable() {
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(
+      window.WebGLRenderingContext &&
+      (canvas.getContext('webgl2') || canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+    );
+  } catch (e) {
+    return false;
+  }
+}
+
 function createBallpit(canvas, config = {}) {
-  const threeInstance = new X({
-    canvas,
-    size: 'parent',
-    rendererOptions: { antialias: true, alpha: true }
-  });
+  if (!isWebGLAvailable()) {
+    console.warn('WebGL is not available in this browser environment.');
+    return null;
+  }
+
+  let threeInstance = null;
+  try {
+    threeInstance = new X({
+      canvas,
+      size: 'parent',
+      rendererOptions: { antialias: true, alpha: true, failIfMajorPerformanceCaveat: false }
+    });
+  } catch (err) {
+    console.warn('Three.js WebGL initialization failed in Ballpit:', err);
+    return null;
+  }
+
   let spheres;
-  threeInstance.renderer.toneMapping = ACESFilmicToneMapping;
-  threeInstance.camera.position.set(0, 0, 20);
-  threeInstance.camera.lookAt(0, 0, 0);
-  threeInstance.cameraMaxAspect = 1.5;
-  threeInstance.resize();
-  
-  initialize(config);
+  try {
+    threeInstance.renderer.toneMapping = ACESFilmicToneMapping;
+    threeInstance.camera.position.set(0, 0, 20);
+    threeInstance.camera.lookAt(0, 0, 0);
+    threeInstance.cameraMaxAspect = 1.5;
+    threeInstance.resize();
+    
+    initialize(config);
+  } catch (err) {
+    console.warn('Failed to setup Three.js scene in Ballpit:', err);
+    try { threeInstance.dispose(); } catch (e) {}
+    return null;
+  }
   
   const raycaster = new Raycaster();
   const plane = new Plane(new Vector3(0, 0, 1), 0);
@@ -612,14 +647,19 @@ function createBallpit(canvas, config = {}) {
   const pointerData = createPointerData({
     domElement: canvas,
     onMove() {
-      raycaster.setFromCamera(pointerData.nPosition, threeInstance.camera);
-      threeInstance.camera.getWorldDirection(plane.normal);
-      raycaster.ray.intersectPlane(plane, intersectionPoint);
-      spheres.physics.center.copy(intersectionPoint);
-      spheres.config.controlSphere0 = true;
+      if (!spheres || !threeInstance) return;
+      try {
+        raycaster.setFromCamera(pointerData.nPosition, threeInstance.camera);
+        threeInstance.camera.getWorldDirection(plane.normal);
+        raycaster.ray.intersectPlane(plane, intersectionPoint);
+        spheres.physics.center.copy(intersectionPoint);
+        spheres.config.controlSphere0 = true;
+      } catch (e) {}
     },
     onLeave() {
-      spheres.config.controlSphere0 = false;
+      if (spheres) {
+        spheres.config.controlSphere0 = false;
+      }
     }
   });
 
@@ -633,12 +673,14 @@ function createBallpit(canvas, config = {}) {
   }
 
   threeInstance.onBeforeRender = deltaInfo => {
-    if (!isPaused) spheres.update(deltaInfo);
+    if (!isPaused && spheres) spheres.update(deltaInfo);
   };
   
   threeInstance.onAfterResize = size => {
-    spheres.config.maxX = size.wWidth / 2;
-    spheres.config.maxY = size.wHeight / 2;
+    if (spheres && spheres.config) {
+      spheres.config.maxX = size.wWidth / 2;
+      spheres.config.maxY = size.wHeight / 2;
+    }
   };
 
   return {
@@ -647,8 +689,8 @@ function createBallpit(canvas, config = {}) {
     setCount(count) { initialize({ ...spheres.config, count }); },
     togglePause() { isPaused = !isPaused; },
     dispose() {
-      pointerData.dispose?.();
-      threeInstance.dispose();
+      try { pointerData.dispose?.(); } catch (e) {}
+      try { threeInstance.dispose(); } catch (e) {}
     }
   };
 }
@@ -656,22 +698,54 @@ function createBallpit(canvas, config = {}) {
 export default function Ballpit({ className = '', followCursor = true, ...props }) {
   const canvasRef = useRef(null);
   const spheresInstanceRef = useRef(null);
+  const [webglSupported, setWebglSupported] = React.useState(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    spheresInstanceRef.current = createBallpit(canvas, {
-      followCursor,
-      ...props
-    });
+    try {
+      spheresInstanceRef.current = createBallpit(canvas, {
+        followCursor,
+        ...props
+      });
+
+      if (!spheresInstanceRef.current) {
+        setWebglSupported(false);
+      }
+    } catch (e) {
+      console.warn("Ballpit initialization caught error:", e);
+      setWebglSupported(false);
+    }
 
     return () => {
-      if (spheresInstanceRef.current) {
-        spheresInstanceRef.current.dispose();
+      try {
+        if (spheresInstanceRef.current) {
+          spheresInstanceRef.current.dispose();
+        }
+      } catch (e) {
+        console.warn("Error disposing Ballpit:", e);
       }
     };
   }, [followCursor, props]);
+
+  if (!webglSupported) {
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center bg-[#050505]/60 backdrop-blur-sm p-6 text-center">
+        <div className="flex flex-wrap items-center justify-center gap-5 max-w-xl">
+          {logoFiles.map((logo, idx) => (
+            <div 
+              key={idx} 
+              className="w-16 h-16 p-3 rounded-2xl glass border border-white/10 hover:border-accent flex items-center justify-center hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-lg"
+              title="Technology Skill"
+            >
+              <img src={logo} alt="skill logo" className="w-full h-full object-contain filter drop-shadow" />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return <canvas className={`${className}`} ref={canvasRef} />;
 }

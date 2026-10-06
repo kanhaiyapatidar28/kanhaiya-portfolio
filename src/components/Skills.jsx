@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { Code2, Palette, Globe, Cpu, MessageSquare, Rocket } from 'lucide-react'
 import Ballpit from './Ballpit'
+import ErrorBoundary from './ErrorBoundary'
+import BlurRevealText from './BlurRevealText'
 
 const skillCategories = [
   {
@@ -52,25 +54,47 @@ export default function Skills() {
 
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <div className="max-w-xl">
-            <h2 className="text-7xl font-black tracking-tighter leading-none">
+            <BlurRevealText
+              as="h2"
+              className="text-7xl font-black tracking-tighter leading-none"
+              scrub={false}
+              duration={0.6}
+              blurAmount={8}
+              start="top 95%"
+            >
               MY <span className="text-white/20">ARSENAL</span>
-            </h2>
+            </BlurRevealText>
           </div>
-          <p className="max-w-md text-text-secondary text-lg leading-relaxed">
+          <BlurRevealText
+            as="p"
+            className="max-w-md text-text-secondary text-lg leading-relaxed"
+            scrub={0.5}
+            start="top 96%"
+            end="top 75%"
+            blurAmount={8}
+          >
             I combine technical mastery with creative vision to deliver digital products that stand out and perform.
-          </p>
+          </BlurRevealText>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {skillCategories.map((category, idx) => (
-            <div key={idx} className="skill-card glass p-10 rounded-3xl group">
-              <div className="mb-6 transform transition-all duration-500">
+            <div 
+              key={idx} 
+              className="skill-card glass p-10 rounded-3xl group hover:border-accent/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(16,185,129,0.15)] cursor-pointer"
+            >
+              <div className="mb-6 transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-6">
                 {category.icon}
               </div>
-              <h3 className="text-2xl lg:text-3xl font-bold mb-6 leading-tight">{category.title}</h3>
-              <div className="flex flex-wrap gap-2">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-6 leading-tight group-hover:text-accent transition-colors">
+                {category.title}
+              </h3>
+              <div className="flex flex-wrap gap-2.5">
                 {category.skills.map((skill, sIdx) => (
-                  <span key={sIdx} className="px-4 py-2 bg-white/5 rounded-full text-xs font-bold border border-white/10 hover:border-accent transition-all">
+                  <span 
+                    key={sIdx} 
+                    className="px-4 py-2 bg-white/5 rounded-full text-xs font-bold border border-white/10 hover:border-accent hover:bg-accent/10 hover:text-accent transition-all duration-300 hover:scale-105 cursor-pointer"
+                  >
                     {skill}
                   </span>
                 ))}
@@ -88,13 +112,15 @@ export default function Skills() {
               Play around with the technologies I use
             </p>
           </div>
-          <Ballpit 
-            count={60}
-            gravity={0.05}
-            friction={0.9975}
-            wallBounce={0.8}
-            followCursor={true}
-          />
+          <ErrorBoundary>
+            <Ballpit 
+              count={35}
+              gravity={0.05}
+              friction={0.9975}
+              wallBounce={0.8}
+              followCursor={true}
+            />
+          </ErrorBoundary>
         </div>
 
       </div>

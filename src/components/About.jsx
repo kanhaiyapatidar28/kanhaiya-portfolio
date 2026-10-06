@@ -1,28 +1,15 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import BlurRevealText from './BlurRevealText'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function About() {
   const sectionRef = useRef(null)
-  const textRef = useRef(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Split text reveal effect (simulated with lines)
-      gsap.from('.about-line', {
-        scrollTrigger: {
-          trigger: textRef.current,
-          start: 'top 80%',
-          end: 'bottom 20%',
-          scrub: 1
-        },
-        opacity: 0.1,
-        stagger: 0.1,
-        y: 20
-      })
-
       // Image parallax
       gsap.to('.about-img', {
         scrollTrigger: {
@@ -31,7 +18,7 @@ export default function About() {
           end: 'bottom top',
           scrub: true
         },
-        y: -100
+        y: -60
       })
     }, sectionRef)
 
@@ -39,7 +26,11 @@ export default function About() {
   }, [])
 
   return (
-    <section id="about" ref={sectionRef} className="py-32 relative overflow-hidden bg-accent/5">
+    <section 
+      id="about" 
+      ref={sectionRef} 
+      className="py-32 relative z-20 overflow-hidden bg-[#050505] shadow-[0_-50px_120px_rgba(0,0,0,0.98)] rounded-t-[2.5rem] sm:rounded-t-[3.5rem] border-t border-white/10"
+    >
       <div className="container px-6">
         <div className="section-header-bar mb-24">
           <span className="section-title-label">About Me</span>
@@ -52,34 +43,10 @@ export default function About() {
             {/* Background Offset Frame */}
             <div className="absolute -inset-4 border border-accent/20 rounded-[3rem] -z-10 transform translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-500" />
 
-            {/* Main Image Container with Tilt */}
+            {/* Main Image Container */}
             <div
-              className="relative h-full overflow-hidden rounded-[3rem] about-img shadow-2xl transform-gpu transition-all duration-300"
+              className="relative h-full overflow-hidden rounded-[3rem] about-img shadow-2xl transform-gpu hover:scale-[1.015] hover:border-accent/40 transition-transform duration-500 will-change-transform"
               style={{ minHeight: '550px' }}
-              onMouseMove={(e) => {
-                const card = e.currentTarget
-                const rect = card.getBoundingClientRect()
-                const x = (e.clientX - rect.left) / rect.width
-                const y = (e.clientY - rect.top) / rect.height
-                const rotateX = (y - 0.5) * 12
-                const rotateY = (x - 0.5) * -12
-                gsap.to(card, {
-                  rotateX: rotateX,
-                  rotateY: rotateY,
-                  scale: 1.02,
-                  duration: 0.4,
-                  ease: 'power2.out'
-                })
-              }}
-              onMouseLeave={(e) => {
-                gsap.to(e.currentTarget, {
-                  rotateX: 0,
-                  rotateY: 0,
-                  scale: 1,
-                  duration: 0.8,
-                  ease: 'elastic.out(1, 0.3)'
-                })
-              }}
             >
               <img
                 src="/profile_transparent.png"
@@ -100,14 +67,36 @@ export default function About() {
           </div>
 
           <div className="flex flex-col justify-center">
-            <div ref={textRef} className="text-4xl md:text-5xl lg:text-[3.5rem] font-black tracking-tight leading-none mb-8">
+            {/* Stacked Headline with exact original line layout & 1/4 screen Blurry Reveal */}
+            <div className="text-4xl md:text-5xl lg:text-[3.5rem] font-black tracking-tight leading-none mb-8">
               {["FRONTEND", "DEVELOPER &", "CYBERSECURITY", "ENTHUSIAST"].map((text, i) => (
-                <div key={i} className="about-line mb-2">{text}</div>
+                <BlurRevealText
+                  key={i}
+                  as="div"
+                  className="mb-2"
+                  scrub={false}
+                  duration={0.5}
+                  blurAmount={8}
+                  start="top 95%"
+                >
+                  {text}
+                </BlurRevealText>
               ))}
             </div>
-            <p className="text-[1.15rem] text-text-secondary leading-relaxed opacity-80 max-w-lg mb-12">
+
+            {/* Blurry Text Reveal Paragraph (1/4 Screen Reveal - Quick & Crisp) */}
+            <BlurRevealText
+              as="p"
+              className="text-[1.15rem] text-text-secondary leading-relaxed opacity-85 max-w-lg mb-12"
+              scrub={0.4}
+              start="top 96%"
+              end="top 75%"
+              blurAmount={7}
+              initialOpacity={0.4}
+            >
               I am a passionate Frontend Developer with a strong interest in Cybersecurity and emerging technologies. I enjoy creating clean, user-friendly interfaces while also exploring how systems can be made more secure and reliable. Beyond coding, I have a creative side—I love sketching, which helps me think visually and bring unique design ideas into my projects. I am always eager to learn new technologies, solve real-world problems, and build innovative solutions that make a difference.
-            </p>
+            </BlurRevealText>
+
             <div className="flex gap-16">
               <div>
                 <h5 className="text-5xl font-black text-white italic">04+</h5>

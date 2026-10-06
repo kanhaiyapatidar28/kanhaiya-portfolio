@@ -1,47 +1,173 @@
-import { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowUpRight } from 'lucide-react'
+import BlurRevealText from './BlurRevealText'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const projects = [
   {
     title: "Real-time Hospital Resource Sharing System",
-    category: "Healthcare",
-    tags: ["Real-time", "AI", "Platform"],
+    subtitle: "AI Bed & Resource Logistics",
     image: "/Project 1.jpeg",
-    color: "#06b6d4"
+    link: "#contact",
+    color: "#06b6d4",
   },
   {
     title: "Intelligent Legal Assistance System",
-    category: "Legal Tech",
-    tags: ["AI", "Web", "Law"],
+    subtitle: "NLP Legal & Case Law AI",
     image: "/Project 2.jpeg",
-    color: "#8b5cf6"
+    link: "#contact",
+    color: "#a855f7",
   },
   {
-    title: "Mechanic on call",
-    category: "On-Demand Service",
-    tags: ["Web", "Location", "Emergency"],
+    title: "Mechanic on Call",
+    subtitle: "Emergency Roadside Dispatch",
     image: "/Project 3.jpeg",
-    color: "#f59e0b"
+    link: "#contact",
+    color: "#f59e0b",
   },
   {
     title: "Valentine Store",
-    category: "E-Commerce",
-    tags: ["React", "Shop", "Web"],
+    subtitle: "Immersive Gift Experience",
     image: "/Project 4.jpeg",
-    color: "#f43f5e"
+    link: "#contact",
+    color: "#f43f5e",
   },
   {
-    title: "Croudsourced civic issue reporting and resolution system",
-    category: "IoT Automation",
-    tags: ["IoT", "Web", "Smart City"],
+    title: "Crowdsourced Civic Issue Reporting",
+    subtitle: "Civic Triage & GIS Routing",
     image: "/Project 5.jpeg",
-    color: "#10b981"
+    link: "#contact",
+    color: "#10b981",
   }
 ]
+
+function ProjectCardItem({ project, index }) {
+  const cardRef = useRef(null)
+  const [tilt, setTilt] = useState({ x: 0, y: 0, spotX: 50, spotY: 50, isHovered: false })
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return
+    const rect = cardRef.current.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width
+    const y = (e.clientY - rect.top) / rect.height
+    setTilt({
+      x: (x - 0.5) * 16,
+      y: (0.5 - y) * 16,
+      spotX: x * 100,
+      spotY: y * 100,
+      isHovered: true,
+    })
+  }
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0, spotX: 50, spotY: 50, isHovered: false })
+  }
+
+  return (
+    <div 
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="project-card flex-shrink-0 flex flex-col justify-center transition-transform duration-200 ease-out cursor-pointer group"
+      style={{ 
+        width: 'min(76vw, 760px)',
+        maxWidth: '760px',
+        transform: tilt.isHovered 
+          ? `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg) scale(1.025)` 
+          : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)',
+        transformStyle: 'preserve-3d'
+      }}
+    >
+      <div 
+        className="w-full relative transition-all duration-500 bg-[#070a0f] rounded-2xl sm:rounded-[28px] overflow-hidden group/img"
+        style={{
+          aspectRatio: '16 / 9',
+          isolation: 'isolate',
+          WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+          border: tilt.isHovered ? '1.5px solid rgba(16, 185, 129, 0.45)' : '1.5px solid rgba(255, 255, 255, 0.16)',
+          boxShadow: tilt.isHovered 
+            ? '0 30px 80px rgba(0, 0, 0, 0.95), 0 0 35px rgba(16, 185, 129, 0.2)' 
+            : '0 20px 60px rgba(0, 0, 0, 0.85)'
+        }}
+      >
+        {tilt.isHovered && (
+          <div 
+            className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-10"
+            style={{
+              background: `radial-gradient(600px circle at ${tilt.spotX}% ${tilt.spotY}%, rgba(16, 185, 129, 0.15), transparent 40%)`
+            }}
+          />
+        )}
+
+        <img 
+          src={project.image} 
+          alt={project.title}
+          loading="lazy"
+          className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover/img:scale-106"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 pointer-events-none" />
+
+        <span className="absolute top-3 sm:top-4 right-3 sm:right-4 px-3 sm:px-3.5 py-0.5 sm:py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-[10px] sm:text-xs font-mono font-bold text-white shadow-lg pointer-events-none group-hover:border-accent/50 group-hover:text-accent transition-colors">
+          0{index + 1}
+        </span>
+      </div>
+
+      <div className="mt-3.5 sm:mt-5 flex items-center justify-between gap-4 px-1 sm:px-2">
+        <div className="flex flex-col items-start max-w-[72%]">
+          <p className="text-[7.5px] sm:text-xs font-mono uppercase tracking-widest font-bold text-accent mb-0.5 sm:mb-1 group-hover:translate-x-1 transition-transform">
+            {project.subtitle}
+          </p>
+          <h3 className="text-xs sm:text-2xl md:text-3xl lg:text-[2.25rem] font-black text-white tracking-tight leading-snug sm:leading-tight group-hover:text-accent transition-colors">
+            {project.title}
+          </h3>
+        </div>
+
+        <div className="flex-shrink-0">
+          <a 
+            href={project.link}
+            className="inline-flex items-center justify-center rounded-full bg-accent text-black font-black text-[10px] sm:text-xs md:text-sm uppercase tracking-widest transition-all duration-300 shadow-[0_0_25px_rgba(16,185,129,0.45),inset_0_1.5px_1px_rgba(255,255,255,0.6)] hover:shadow-[0_0_40px_rgba(16,185,129,0.8),inset_0_1.5px_1px_rgba(255,255,255,0.9)] hover:scale-110 active:scale-95 cursor-pointer pointer-events-auto select-none group/btn h-8 sm:h-11 md:h-12 px-4 sm:px-6 md:px-7 gap-1.5 sm:gap-2"
+            style={{
+              textDecoration: 'none',
+              whiteSpace: 'nowrap',
+              boxSizing: 'border-box',
+            }}
+          >
+            <span 
+              style={{ 
+                display: 'inline-block',
+                lineHeight: 1,
+                letterSpacing: '0.08em',
+              }}
+            >
+              Visit
+            </span>
+            <span 
+              style={{ 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                lineHeight: 1,
+              }}
+            >
+              <ArrowUpRight 
+                strokeWidth={2.8}
+                className="transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 w-3 sm:w-4 md:w-4.5 h-3 sm:h-4 md:h-4.5" 
+                style={{ 
+                  display: 'block',
+                  flexShrink: 0,
+                }} 
+              />
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function Projects() {
   const sectionRef = useRef(null)
@@ -50,65 +176,48 @@ export default function Projects() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Horizontal Scroll Animation
-      const scrollTween = gsap.fromTo(
-        sectionRef.current,
-        { x: 0 },
-        {
-          x: '-400vw',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: triggerRef.current,
-            start: 'top top',
-            end: '+=4000',
-            scrub: 1,
-            pin: true,
-            invalidateOnRefresh: true,
-          }
-        }
-      )
+      const getScrollDistance = () => {
+        if (!sectionRef.current) return 0
+        return sectionRef.current.scrollWidth - window.innerWidth
+      }
 
-      // Section Progress Bar
+      const scrollTween = gsap.to(sectionRef.current, {
+        x: () => -getScrollDistance(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: 'top top',
+          end: () => `+=${getScrollDistance()}`,
+          scrub: 0.4,
+          pin: true,
+          invalidateOnRefresh: true,
+          anticipatePin: 1
+        }
+      })
+
       gsap.to(progressRef.current, {
         scrollTrigger: {
           trigger: triggerRef.current,
           start: 'top top',
-          end: '+=4000',
+          end: () => `+=${getScrollDistance()}`,
           scrub: true,
+          invalidateOnRefresh: true
         },
         width: '100%',
         ease: 'none'
       })
 
-      // Image Parallax within Horizontal Scroll
-      gsap.utils.toArray('.project-image').forEach((img) => {
-        gsap.fromTo(img, 
-          { x: -50 },
-          {
-            x: 50,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: img,
-              containerAnimation: scrollTween,
-              start: 'left right',
-              end: 'right left',
-              scrub: true
-            }
-          }
-        )
-      })
-
-      // Card Entry Reveal
       gsap.utils.toArray('.project-card').forEach((card) => {
         gsap.from(card, {
-          y: 60,
-          opacity: 0,
-          scale: 0.9,
-          duration: 1,
+          y: 12,
+          opacity: 0.4,
+          scale: 0.98,
+          duration: 0.25,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: card,
             containerAnimation: scrollTween,
-            start: 'left 80%',
+            start: 'left 98%',
             toggleActions: 'play none none reverse'
           }
         })
@@ -120,119 +229,88 @@ export default function Projects() {
   }, [])
 
   return (
-    <section id="work" className="overflow-hidden" style={{ backgroundColor: '#000' }}>
+    <section id="work" className="overflow-hidden bg-[#030508] relative z-10">
       <div ref={triggerRef}>
-        <div ref={sectionRef} className="flex items-center relative" style={{ height: '100vh', width: '500vw', gap: '8vw', paddingLeft: '10vw', paddingRight: '10vw' }}>
+        <div 
+          ref={sectionRef} 
+          className="flex items-center relative w-max flex-nowrap" 
+          style={{ height: '100vh', gap: '8vw', paddingRight: '15vw' }}
+        >
           
-          {/* Section Header */}
-          <div className="flex-shrink-0 flex flex-col justify-center" style={{ width: '80vw' }}>
-            <div className="section-header-bar mb-12">
-              <span className="section-title-label">Selected Works</span>
-              <span className="section-num">02 / 06</span>
-            </div>
-            
-            <h2 className="text-display font-black tracking-tighter leading-none mb-8">
-              CRAFTING <br /> IMPACTFUL <br /> SOLUTIONS
-            </h2>
-            <p className="text-xl text-text-secondary max-w-lg mb-12">
-              A curated collection of projects where design meets functionality. Scroll to explore my journey through digital craftsmanship.
-            </p>
-            <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-accent">
-              <span className="w-12 h-[1px] bg-accent"></span>
-              Scroll to explore
+          <div 
+            className="flex-shrink-0 w-screen h-screen flex items-center justify-center px-6 sm:px-10 md:px-14 lg:px-20"
+            style={{ width: '100vw', minWidth: '100vw' }}
+          >
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-12 w-full max-w-[94vw] 2xl:max-w-[1700px]">
+              
+              <div className="flex flex-col justify-center max-w-5xl">
+                <div className="section-header-bar mb-4 sm:mb-7 max-w-md">
+                  <span className="section-title-label text-xs sm:text-sm md:text-base font-mono">Selected Works</span>
+                  <span className="section-num text-xs sm:text-sm md:text-base font-mono">02 / 05</span>
+                </div>
+                
+                <BlurRevealText
+                  as="h2"
+                  className="font-black tracking-tighter text-white uppercase mb-4 sm:mb-6"
+                  style={{
+                    fontSize: 'clamp(3.2rem, 7.2vw, 9.2rem)',
+                    lineHeight: 0.9,
+                    letterSpacing: '-0.04em'
+                  }}
+                  scrub={false}
+                  duration={0.6}
+                  blurAmount={8}
+                  start="top 95%"
+                >
+                  CRAFTING <br />
+                  <span className="text-accent italic">IMPACTFUL</span> <br />
+                  SOLUTIONS
+                </BlurRevealText>
+                
+                <BlurRevealText
+                  as="p"
+                  className="text-text-secondary leading-relaxed mb-6 sm:mb-10 font-normal opacity-90"
+                  style={{
+                    fontSize: 'clamp(1rem, 1.85vw, 2.25rem)',
+                    maxWidth: 'min(92%, 950px)',
+                    lineHeight: 1.3
+                  }}
+                  scrub={false}
+                  duration={0.6}
+                  blurAmount={7}
+                  start="top 95%"
+                >
+                  A curated showcase of full-stack engineering, real-time architectures, and polished interactive experiences.
+                </BlurRevealText>
+                
+                <div className="flex items-center gap-3.5 text-xs sm:text-base md:text-lg font-bold uppercase tracking-widest text-accent">
+                  <span className="w-10 sm:w-14 md:w-20 h-[3px] bg-accent inline-block"></span>
+                  Scroll horizontally to explore
+                </div>
+              </div>
+
+              <div className="projects-floating-photo-container">
+                <img 
+                  src="/floating photo.png" 
+                  alt="Floating Art" 
+                  className="projects-floating-photo hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+
             </div>
           </div>
 
-          {/* Project Items */}
           {projects.map((project, index) => (
-            <div 
-              key={index} 
-              className="project-card flex-shrink-0 relative group perspective-1000"
-              style={{ width: '65vw', height: '70vh' }}
-            >
-              <div 
-                className="w-full h-full overflow-hidden relative transition-all duration-500 glass transform-gpu"
-                style={{ borderRadius: '3rem' }}
-                onMouseMove={(e) => {
-                  const card = e.currentTarget
-                  const rect = card.getBoundingClientRect()
-                  const x = (e.clientX - rect.left) / rect.width
-                  const y = (e.clientY - rect.top) / rect.height
-                  const rotateX = (y - 0.5) * 10
-                  const rotateY = (x - 0.5) * -10
-                  gsap.to(card, {
-                    rotateX: rotateX,
-                    rotateY: rotateY,
-                    scale: 1.02,
-                    duration: 0.4,
-                    ease: 'power2.out'
-                  })
-                }}
-                onMouseLeave={(e) => {
-                  gsap.to(e.currentTarget, {
-                    rotateX: 0,
-                    rotateY: 0,
-                    scale: 1,
-                    duration: 0.8,
-                    ease: 'elastic.out(1, 0.3)'
-                  })
-                }}
-              >
-                {/* Image Wrap for Parallax */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="project-image object-cover absolute transition-transform duration-700"
-                    style={{ width: '110%', height: '110%', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-                  />
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.2), transparent)' }} />
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent 40%)' }} />
-                </div>
-
-                {/* Content Overlay */}
-                <div className="absolute inset-0 p-16 flex flex-col justify-between z-10">
-                  {/* Top Content */}
-                  <div className="max-w-4xl pr-24">
-                    <div className="mb-6 flex flex-wrap gap-2 transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                      <span className="px-4 py-1.5 bg-accent text-black text-[0.6rem] font-black uppercase tracking-tighter rounded-full shadow-emerald">
-                        {project.category}
-                      </span>
-                      {project.tags.map((tag, tIdx) => (
-                        <span key={tIdx} className="px-4 py-1.5 bg-white/10 backdrop-blur-md text-white text-[0.6rem] font-bold uppercase tracking-widest rounded-full border border-white/10">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-tight mb-8 transform-gpu group-hover:translate-x-4 transition-transform duration-500 italic max-w-3xl" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.5)' }}>
-                      {project.title}
-                    </h3>
-                  </div>
-
-                  {/* Bottom Content */}
-                  <div className="flex items-center gap-6 transform translate-y-4 transition-all duration-500 delay-100" style={{ opacity: 0.9 }}>
-                    <button className="px-10 py-4 text-xs font-black uppercase tracking-widest rounded-full flex items-center gap-2 transition-colors shadow-xl" style={{ backgroundColor: '#fff', color: '#000' }}>
-                      View Project <ArrowUpRight size={18} />
-                    </button>
-                    <span className="text-white/40 text-xs font-bold uppercase tracking-widest border-l border-white/20 pl-6 h-4 flex items-center">
-                      Case Study 2024
-                    </span>
-                  </div>
-                </div>
-
-                <div className="absolute border flex items-center justify-center backdrop-blur-md transition-all" style={{ top: '3rem', right: '3rem', width: '5rem', height: '5rem', borderRadius: '50%', borderColor: 'rgba(255,255,255,0.1)', opacity: 0.5, backgroundColor: 'rgba(255,255,255,0.05)' }}>
-                   <div className="text-accent italic font-black text-2xl transition-transform">0{index + 1}</div>
-                </div>
-              </div>
-            </div>
+            <ProjectCardItem key={index} project={project} index={index} />
           ))}
 
         </div>
       </div>
 
-      {/* Horizontal Progress bar */}
-      <div className="fixed overflow-hidden rounded-full z-100" style={{ bottom: '3rem', left: '50%', transform: 'translateX(-50%)', width: '30vw', height: '2px', backgroundColor: 'rgba(255,255,255,0.05)' }}>
+      <div 
+        className="fixed overflow-hidden rounded-full z-100" 
+        style={{ bottom: '2.5rem', left: '50%', transform: 'translateX(-50%)', width: '28vw', height: '3px', backgroundColor: 'rgba(255,255,255,0.08)' }}
+      >
         <div ref={progressRef} className="h-full bg-accent shadow-emerald" style={{ width: '0%' }} />
       </div>
     </section>

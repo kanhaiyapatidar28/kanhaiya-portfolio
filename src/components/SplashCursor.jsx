@@ -17,17 +17,17 @@ function pointerPrototype() {
 }
 
 export default function SplashCursor({
-  SIM_RESOLUTION = 128,
-  DYE_RESOLUTION = 1440,
-  CAPTURE_RESOLUTION = 512,
-  DENSITY_DISSIPATION = 3.5,
-  VELOCITY_DISSIPATION = 2,
+  SIM_RESOLUTION = 64,
+  DYE_RESOLUTION = 512,
+  CAPTURE_RESOLUTION = 256,
+  DENSITY_DISSIPATION = 4.0,
+  VELOCITY_DISSIPATION = 2.5,
   PRESSURE = 0.1,
-  PRESSURE_ITERATIONS = 20,
-  CURL = 3,
+  PRESSURE_ITERATIONS = 8,
+  CURL = 2,
   SPLAT_RADIUS = 0.2,
-  SPLAT_FORCE = 6000,
-  SHADING = true,
+  SPLAT_FORCE = 5000,
+  SHADING = false,
   COLOR_UPDATE_SPEED = 10,
   BACK_COLOR = { r: 0.5, g: 0, b: 0 },
   TRANSPARENT = true
@@ -58,14 +58,6 @@ export default function SplashCursor({
       TRANSPARENT
     };
 
-    const { gl, ext } = getWebGLContext(canvas);
-    if (!gl || !ext) return;
-
-    if (!ext.supportLinearFiltering) {
-      config.DYE_RESOLUTION = 256;
-      config.SHADING = false;
-    }
-
     function getWebGLContext(canvas) {
       const params = {
         alpha: true,
@@ -75,14 +67,16 @@ export default function SplashCursor({
         preserveDrawingBuffer: false
       };
 
-      let gl = canvas.getContext('webgl2', params);
-
-      if (!gl) {
-        gl = canvas.getContext('webgl', params) || canvas.getContext('experimental-webgl', params);
+      let gl = null;
+      try {
+        gl = canvas.getContext('webgl2', params) || canvas.getContext('webgl', params) || canvas.getContext('experimental-webgl', params);
+      } catch (e) {
+        console.warn("Unable to obtain WebGL context:", e);
+        return { gl: null, ext: null };
       }
 
       if (!gl) {
-        throw new Error('Unable to initialize WebGL.');
+        return { gl: null, ext: null };
       }
 
       const isWebGL2 = 'drawBuffers' in gl;
@@ -90,13 +84,15 @@ export default function SplashCursor({
       let supportLinearFiltering = false;
       let halfFloat = null;
 
-      if (isWebGL2) {
-        gl.getExtension('EXT_color_buffer_float');
-        supportLinearFiltering = !!gl.getExtension('OES_texture_float_linear');
-      } else {
-        halfFloat = gl.getExtension('OES_texture_half_float');
-        supportLinearFiltering = !!gl.getExtension('OES_texture_half_float_linear');
-      }
+      try {
+        if (isWebGL2) {
+          gl.getExtension('EXT_color_buffer_float');
+          supportLinearFiltering = !!gl.getExtension('OES_texture_float_linear');
+        } else {
+          halfFloat = gl.getExtension('OES_texture_half_float');
+          supportLinearFiltering = !!gl.getExtension('OES_texture_half_float_linear');
+        }
+      } catch (e) {}
 
       gl.clearColor(0, 0, 0, 1);
 
@@ -126,6 +122,22 @@ export default function SplashCursor({
           supportLinearFiltering
         }
       };
+    }
+
+    let glObj;
+    try {
+      glObj = getWebGLContext(canvas);
+    } catch (err) {
+      console.warn("WebGL initialization failed in SplashCursor:", err);
+      return;
+    }
+
+    if (!glObj || !glObj.gl || !glObj.ext) return;
+    const { gl, ext } = glObj;
+
+    if (!ext.supportLinearFiltering) {
+      config.DYE_RESOLUTION = 256;
+      config.SHADING = false;
     }
 
     function getSupportedFormat(gl, internalFormat, format, type) {
@@ -720,7 +732,7 @@ export default function SplashCursor({
     }
 
     function scaleByPixelRatio(input) {
-      const pixelRatio = window.devicePixelRatio || 1;
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.25);
       return Math.floor(input * pixelRatio);
     }
 
@@ -729,7 +741,16 @@ export default function SplashCursor({
 
     let lastUpdateTime = Date.now();
     let colorUpdateTimer = 0.0;
-    let animationFrameId;
+    let animationFrameId = null;
+    let activeFrames = 60;
+
+    function wakeUp() {
+      activeFrames = 60;
+      if (!animationFrameId) {
+        lastUpdateTime = Date.now();
+        animationFrameId = requestAnimationFrame(updateFrame);
+      }
+    }
 
     function updateFrame() {
       const dt = calcDeltaTime();
@@ -738,7 +759,13 @@ export default function SplashCursor({
       applyInputs();
       step(dt);
       render(null);
-      animationFrameId = requestAnimationFrame(updateFrame);
+
+      if (activeFrames > 0) {
+        activeFrames--;
+        animationFrameId = requestAnimationFrame(updateFrame);
+      } else {
+        animationFrameId = null;
+      }
     }
 
     function calcDeltaTime() {
@@ -1041,6 +1068,7 @@ export default function SplashCursor({
     }
 
     function handleMouseDown(e) {
+      wakeUp();
       const pointer = pointers[0];
       const posX = scaleByPixelRatio(e.clientX);
       const posY = scaleByPixelRatio(e.clientY);
@@ -1053,12 +1081,13 @@ export default function SplashCursor({
       const posX = scaleByPixelRatio(e.clientX);
       const posY = scaleByPixelRatio(e.clientY);
       const color = generateColor();
-      updateFrame();
+      wakeUp();
       updatePointerMoveData(pointer, posX, posY, color);
       window.removeEventListener('mousemove', handleFirstMouseMove);
     }
     
     function handleMouseMove(e) {
+      wakeUp();
       const pointer = pointers[0];
       const posX = scaleByPixelRatio(e.clientX);
       const posY = scaleByPixelRatio(e.clientY);
@@ -1072,13 +1101,14 @@ export default function SplashCursor({
       for (let i = 0; i < touches.length; i++) {
         const posX = scaleByPixelRatio(touches[i].clientX);
         const posY = scaleByPixelRatio(touches[i].clientY);
-        updateFrame();
+        wakeUp();
         updatePointerDownData(pointer, touches[i].identifier, posX, posY);
       }
       window.removeEventListener('touchstart', handleFirstTouchStart);
     }
 
     function handleTouchStart(e) {
+      wakeUp();
       const touches = e.targetTouches;
       const pointer = pointers[0];
       for (let i = 0; i < touches.length; i++) {
@@ -1089,6 +1119,7 @@ export default function SplashCursor({
     }
 
     function handleTouchMove(e) {
+      wakeUp();
       const touches = e.targetTouches;
       const pointer = pointers[0];
       for (let i = 0; i < touches.length; i++) {
@@ -1106,16 +1137,16 @@ export default function SplashCursor({
       }
     }
 
-    window.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mousemove', handleFirstMouseMove);
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('touchstart', handleFirstTouchStart, { passive: false });
-    window.addEventListener('touchstart', handleTouchStart, { passive: false });
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
-    window.addEventListener('touchend', handleTouchEnd);
+    window.addEventListener('mousedown', handleMouseDown, { passive: true });
+    window.addEventListener('mousemove', handleFirstMouseMove, { passive: true });
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('touchstart', handleFirstTouchStart, { passive: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     // Initial update trigger
-    animationFrameId = requestAnimationFrame(updateFrame);
+    wakeUp();
 
     return () => {
       cancelAnimationFrame(animationFrameId);
