@@ -91,7 +91,7 @@ export default function IntroVideo({ onComplete }) {
         disableRemotePlayback
         onEnded={handleFinish}
         onError={handleFinish}
-        className="w-full h-full object-cover md:object-contain bg-black"
+        className="absolute inset-0 w-full h-full object-cover md:object-contain bg-black"
         style={{
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden',
