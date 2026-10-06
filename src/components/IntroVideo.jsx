@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState, useCallback } from 'react'
 export default function IntroVideo({ onComplete }) {
   const videoRef = useRef(null)
   const [isFadingOut, setIsFadingOut] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const isFinishedRef = useRef(false)
 
   const handleFinish = useCallback(() => {
@@ -19,6 +20,16 @@ export default function IntroVideo({ onComplete }) {
       }
     }, 500)
   }, [onComplete])
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   useEffect(() => {
     const video = videoRef.current
@@ -70,7 +81,7 @@ export default function IntroVideo({ onComplete }) {
       window.removeEventListener('scroll', handleScroll)
       clearTimeout(failsafe)
     }
-  }, [handleFinish])
+  }, [handleFinish, isMobile])
 
   return (
     <div
@@ -82,7 +93,7 @@ export default function IntroVideo({ onComplete }) {
       {/* Crisp Fullscreen Video On Top */}
       <video
         ref={videoRef}
-        src="/video%20my%20portfolio.mp4"
+        src={isMobile ? "/1006.mp4" : "/portfolio_demo.mp4"}
         autoPlay
         muted
         playsInline
@@ -91,7 +102,7 @@ export default function IntroVideo({ onComplete }) {
         disableRemotePlayback
         onEnded={handleFinish}
         onError={handleFinish}
-        className="w-full h-full object-cover scale-[2.5] md:scale-100 md:object-contain bg-black origin-center transform-gpu"
+        className="w-full h-full object-cover bg-black origin-center transform-gpu"
         style={{
           backfaceVisibility: 'hidden',
         }}
