@@ -29,11 +29,11 @@ const projects = [
     color: "#f59e0b",
   },
   {
-    title: "Valentine Store",
-    subtitle: "Immersive Gift Experience",
+    title: "DeLance",
+    subtitle: "Decentralized Freelance Marketplace",
     image: "/Project 4.jpeg",
-    link: "#contact",
-    color: "#f43f5e",
+    link: "https://de-lance-mujyr703n-kanhaiyalal-patidars-projects.vercel.app/",
+    color: "#a855f7",
   },
   {
     title: "Crowdsourced Civic Issue Reporting",
