@@ -155,6 +155,7 @@ export default function Hero() {
             <div className="hero-anim-item mb-5">
               <h2 className="text-xl md:text-2xl font-bold text-white leading-snug">
                 Passionate about{' '}
+                <br className="block md:hidden" />
                 <span className="text-accent font-black">
                   {displayedText}
                 </span>
