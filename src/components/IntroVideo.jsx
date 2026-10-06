@@ -74,7 +74,7 @@ export default function IntroVideo({ onComplete }) {
 
   return (
     <div
-      className={`fixed inset-0 z-[999999] bg-black flex items-center justify-center overflow-hidden transition-opacity duration-500 ease-out select-none ${
+      className={`fixed inset-0 z-[999999] bg-black overflow-hidden transition-opacity duration-500 ease-out select-none ${
         isFadingOut ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
       style={{ willChange: 'opacity' }}
@@ -91,7 +91,7 @@ export default function IntroVideo({ onComplete }) {
         disableRemotePlayback
         onEnded={handleFinish}
         onError={handleFinish}
-        className="absolute inset-0 w-full h-full object-cover md:object-contain bg-black"
+        className="w-full h-full object-cover md:object-contain bg-black"
         style={{
           transform: 'translateZ(0)',
           backfaceVisibility: 'hidden',
