@@ -11,7 +11,7 @@ const projects = [
     title: "Real-time Hospital Resource Sharing System",
     subtitle: "AI Bed & Resource Logistics",
     image: "/Project 1.jpeg",
-    link: "#contact",
+    link: "https://sanjivani-frontend.onrender.com",
     color: "#06b6d4",
   },
   {
