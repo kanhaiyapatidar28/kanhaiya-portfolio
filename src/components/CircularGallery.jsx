@@ -518,15 +518,20 @@ class App {
   onTouchDown(e) {
     this.isDown = true;
     this.scroll.position = this.scroll.current;
-    this.start = e.touches ? e.touches[0].clientX : e.clientX;
+    this.startX = e.touches ? e.touches[0].clientX : e.clientX;
+    this.startY = e.touches ? e.touches[0].clientY : e.clientY;
   }
   onTouchMove(e) {
     if (!this.isDown) return;
     const x = e.touches ? e.touches[0].clientX : e.clientX;
+    const y = e.touches ? e.touches[0].clientY : e.clientY;
     const isMobile = this.screen.width < 768;
     const activeSpeed = isMobile ? this.scrollSpeed * 0.5 : this.scrollSpeed;
-    const distance = (this.start - x) * (activeSpeed * 0.025);
-    this.scroll.target = this.scroll.position + distance;
+    
+    const distanceX = (this.startX - x) * (activeSpeed * 0.025);
+    const distanceY = (this.startY - y) * (activeSpeed * 0.025);
+    
+    this.scroll.target = this.scroll.position + distanceX + distanceY;
   }
   onTouchUp() {
     this.isDown = false;
