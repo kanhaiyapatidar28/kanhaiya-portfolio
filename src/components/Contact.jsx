@@ -119,8 +119,8 @@ export default function Contact() {
             { 
               icon: <Download size={24} />, 
               label: 'Download Resume', 
-              href: '/resume.pdf',
-              download: 'Kanhaiya_Patidar_Resume.pdf'
+              href: '/Kanhaiya_Patidar_Updated_Resume.pdf',
+              download: 'Kanhaiya_Patidar_Updated_Resume.pdf'
             }
           ].map((item, idx) => (
             <a 

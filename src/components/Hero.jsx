@@ -185,8 +185,8 @@ export default function Hero() {
                 <ArrowUpRight size={17} className="cta-icon-move transition-transform duration-300 group-hover/cta:translate-x-1 group-hover/cta:-translate-y-1" />
               </a>
               <a 
-                href="/resume.pdf" 
-                download="Kanhaiya_Patidar_Resume.pdf" 
+                href="/Kanhaiya_Patidar_Updated_Resume.pdf" 
+                download="Kanhaiya_Patidar_Updated_Resume.pdf" 
                 className="cta-button-secondary group/res"
               >
                 <Download size={16} className="transition-transform duration-300 group-hover/res:-translate-y-0.5" /> <span>Resume</span>

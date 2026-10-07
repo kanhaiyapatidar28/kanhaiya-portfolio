@@ -140,8 +140,8 @@ export default function Navbar() {
           <div className="flex items-center gap-1.5 sm:gap-2.5">
             {/* Persistent Visible Resume CTA Button (Always visible on BOTH Mobile and Desktop) */}
             <a
-              href="/resume.pdf"
-              download="Kanhaiya_Patidar_Resume.pdf"
+              href="/Kanhaiya_Patidar_Updated_Resume.pdf"
+              download="Kanhaiya_Patidar_Updated_Resume.pdf"
               className="capsule-resume-btn group/navres hover:scale-105 active:scale-95 transition-transform duration-300"
               title="Download Resume"
               aria-label="Download Resume"
