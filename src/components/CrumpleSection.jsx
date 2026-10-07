@@ -22,40 +22,38 @@ export default function CrumpleSection() {
             Hold and drag the image to crumple the paper. Release to restore it. This is a WebGL physics demo!
           </p>
 
-          <div className="relative w-full flex justify-center pb-12 z-20">
-            <div className="w-[320px] h-[400px] md:w-[400px] md:h-[500px]">
-              <PaperCrumple
-                src="/handwritten-note.png"
-                alt="A handwritten note to crumple"
-                width={400}
-                height={500}
-                sceneHeight={500}
-                releaseBehavior="restore"
-                crumpleAmount={0.85}
-                crumpleDuration={0.55}
-                releaseDuration={0.4}
-                foldCount={6}
-                foldSharpness={0.6}
-                wrinkleDepth={0.65}
-                creaseStrength={0.18}
-                paperColor="#f4f0e8"
-                paperTexture={0.08}
-                draggable
-                returnToOrigin
-                imageFit="cover"
-                roughness={0.92}
-                lightIntensity={1.8}
-                lightAngle={-35}
-                shadow
-                shadowOpacity={0.16}
-                dragRotation={10}
-                dragRadius={180}
-                rotation={0}
-                seed={7}
-                detail={64}
-                disabled={false}
-              />
-            </div>
+          <div className="relative w-full flex justify-center pb-12 z-20 w-full max-w-[600px] mx-auto">
+            <PaperCrumple
+              src="/handwritten-note.png"
+              alt="A print to crumple"
+              width={400}
+              height={400}
+              sceneHeight={500}
+              releaseBehavior="restore"
+              crumpleAmount={0.85}
+              crumpleDuration={0.55}
+              releaseDuration={0.4}
+              foldCount={6}
+              foldSharpness={0.6}
+              wrinkleDepth={0.65}
+              creaseStrength={0.18}
+              paperColor="#f4f0e8"
+              paperTexture={0.08}
+              draggable
+              returnToOrigin
+              imageFit="contain"
+              roughness={0.92}
+              lightIntensity={1.8}
+              lightAngle={-35}
+              shadow
+              shadowOpacity={0.16}
+              dragRotation={10}
+              dragRadius={180}
+              rotation={0}
+              seed={7}
+              detail={64}
+              disabled={false}
+            />
           </div>
         </div>
       </div>
