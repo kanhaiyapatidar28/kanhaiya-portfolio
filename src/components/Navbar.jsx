@@ -105,7 +105,8 @@ export default function Navbar() {
                 className="capsule-brand-icon"
               />
               <div className="flex flex-col">
-                <span className="capsule-brand-text">KANHAIYA PATIDAR</span>
+                <span className="capsule-brand-text hidden sm:block">KANHAIYA PATIDAR</span>
+                <span className="capsule-brand-text block sm:hidden">KANHAIYA</span>
               </div>
             </a>
 
@@ -136,7 +137,7 @@ export default function Navbar() {
           </div>
 
           {/* Right Pod: Persistent Resume Button + CTA & Mobile Toggle */}
-          <div className="flex items-center gap-2 sm:gap-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2.5">
             {/* Persistent Visible Resume CTA Button (Always visible on BOTH Mobile and Desktop) */}
             <a
               href="/resume.pdf"

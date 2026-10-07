@@ -31,7 +31,7 @@ const projects = [
   {
     title: "DeLance",
     subtitle: "Decentralized Freelance Marketplace",
-    image: "/Project 4.jpeg",
+    image: "/project 4.jpeg",
     link: "https://de-lance.vercel.app/",
     color: "#a855f7",
   },
