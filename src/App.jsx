@@ -12,6 +12,7 @@ import GallerySection from './components/GallerySection'
 import CertificatesSection from './components/CertificatesSection'
 import Skills from './components/Skills'
 import Achievements from './components/Achievements'
+import CrumpleSection from './components/CrumpleSection'
 import Contact from './components/Contact'
 import ErrorBoundary from './components/ErrorBoundary'
 import IntroVideo from './components/IntroVideo'
@@ -87,6 +88,9 @@ function App() {
             </ErrorBoundary>
             <ErrorBoundary>
               <Achievements />
+            </ErrorBoundary>
+            <ErrorBoundary>
+              <CrumpleSection />
             </ErrorBoundary>
             <ErrorBoundary>
               <Contact />
