@@ -92,7 +92,7 @@
 
 .folder.open .paper.active-paper {
   z-index: 50 !important;
-  transform: translate(-50%, -160%) scale(2.2) !important;
+  transform: translate(-50%, -150%) scale(2.8) !important;
   box-shadow: 0 15px 40px rgba(0,0,0,0.6);
 }
 

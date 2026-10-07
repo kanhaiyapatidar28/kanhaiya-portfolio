@@ -29,11 +29,11 @@ export default function CertificatesSection() {
             <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-accent rounded-full opacity-50 blur-[2px]"></div>
           </h2>
           
-          <p className="text-text-secondary text-sm md:text-base text-center max-w-xl mx-auto mb-32">
+          <p className="text-text-secondary text-sm md:text-base text-center max-w-xl mx-auto mb-[180px] md:mb-[350px]">
             A collection of my professional certifications and achievements. Interact with the folder to view them.
           </p>
 
-          <div className="relative w-full flex justify-center pb-24 mt-10 md:mt-24 transform scale-[0.9] sm:scale-125 md:scale-[1.8] z-20">
+          <div className="relative w-full flex justify-center pb-32 transform scale-[0.9] sm:scale-125 md:scale-[2.1] lg:scale-[2.3] z-20">
             <Folder size={1} color="#10b981" items={certificates} />
           </div>
         </div>
