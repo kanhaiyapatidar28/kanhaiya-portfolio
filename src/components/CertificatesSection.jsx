@@ -29,9 +29,13 @@ export default function CertificatesSection() {
             <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-accent rounded-full opacity-50 blur-[2px]"></div>
           </h2>
           
-          <p className="text-text-secondary text-sm md:text-base text-center max-w-xl mx-auto mb-[250px] sm:mb-[300px] md:mb-[500px]">
+          <p className="text-text-secondary text-sm md:text-base text-center max-w-xl mx-auto">
             A collection of my professional certifications and achievements. Interact with the folder to view them.
           </p>
+
+          {/* Spacer block to guarantee space regardless of margin collapse or Tailwind JIT issues */}
+          <div style={{ height: '350px' }} className="hidden md:block"></div>
+          <div style={{ height: '160px' }} className="block md:hidden"></div>
 
           <div className="relative w-full flex justify-center pb-32 transform scale-[0.9] sm:scale-[1.1] md:scale-[1.8] lg:scale-[2.1] z-20">
             <Folder size={1} color="#10b981" items={certificates} />
