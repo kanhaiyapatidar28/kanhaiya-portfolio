@@ -25,7 +25,7 @@ export default function CrumpleSection() {
           <div className="relative w-full flex justify-center pb-12 z-20">
             <div className="w-[320px] h-[400px] md:w-[400px] md:h-[500px]">
               <PaperCrumple
-                src="/handwritten note.png"
+                src="/handwritten-note.png"
                 alt="A handwritten note to crumple"
                 width={400}
                 height={500}
