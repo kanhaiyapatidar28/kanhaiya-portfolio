@@ -33,9 +33,8 @@ export default function CertificatesSection() {
             A collection of my professional certifications and achievements. Interact with the folder to view them.
           </p>
 
-          <div className="relative w-full flex justify-center pb-24">
-            {/* We scale the folder up slightly for better visibility */}
-            <Folder size={1.8} color="#10b981" items={certificates} />
+          <div className="relative w-full flex justify-center pb-24 mt-10 md:mt-24 transform scale-[0.9] sm:scale-125 md:scale-[1.8] z-20">
+            <Folder size={1} color="#10b981" items={certificates} />
           </div>
         </div>
       </div>
