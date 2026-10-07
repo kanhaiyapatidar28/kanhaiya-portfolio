@@ -26,9 +26,9 @@ export default function CrumpleSection() {
             <PaperCrumple
               src="/handwritten-note2.png"
               alt="A print to crumple"
-              width={400}
-              height={400}
-              sceneHeight={500}
+              width={550}
+              height={550}
+              sceneHeight={650}
               releaseBehavior="restore"
               crumpleAmount={0.85}
               crumpleDuration={0.55}
