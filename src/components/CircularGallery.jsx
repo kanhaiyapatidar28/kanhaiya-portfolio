@@ -29,6 +29,43 @@ function autoBind(instance) {
 const DEFAULT_FONT = 'bold 30px Figtree';
 const DEFAULT_FONT_URL = 'https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap';
 
+const DialOverlay = ({ dialRef, numberRef }) => {
+  const ticks = [];
+  for (let i = -50; i <= 50; i++) {
+    ticks.push(
+      <line 
+        key={i} 
+        x1="0" y1="-200" x2="0" y2="-175"
+        transform={`rotate(${i * 4})`}
+        stroke="rgba(255,255,255,0.2)" 
+        strokeWidth="1.5" 
+        strokeLinecap="round"
+      />
+    );
+  }
+
+  return (
+    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-[#050505] shadow-2xl rounded-[30px] w-64 h-32 flex flex-col items-center justify-start pt-3 pointer-events-none z-50 overflow-hidden border border-white/5">
+      <div ref={numberRef} className="text-white text-xl font-medium tracking-widest mb-1 z-30">0</div>
+      
+      <div className="relative w-full h-full flex justify-center">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-16 bg-gradient-to-b from-white to-white/0 rounded-full z-20" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 z-10 w-[300px] h-[150px]">
+          <svg width="300" height="150" viewBox="-150 0 300 150">
+            <g ref={dialRef} transform="translate(0, 200)">
+              {ticks}
+            </g>
+          </svg>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-[#050505] z-30" />
+        <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#050505] to-transparent z-30" />
+      </div>
+    </div>
+  );
+    </div>
+  );
+};
+
 function deriveFontFamilyFromUrl(url) {
   const fileName = (url.split('/').pop() || 'custom-font').split('?')[0];
   const base = fileName.replace(/\.(woff2?|ttf|otf|eot)$/i, '');
@@ -406,11 +443,15 @@ class App {
       borderRadius = 0,
       font = 'bold 30px Figtree',
       scrollSpeed = 2,
-      scrollEase = 0.05
+      scrollEase = 0.05,
+      dialRef,
+      numberRef
     } = {}
   ) {
     document.documentElement.classList.remove('no-js');
     this.container = container;
+    this.dialRef = dialRef;
+    this.numberRef = numberRef;
     this.scrollSpeed = scrollSpeed;
     this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
     this.onCheckDebounce = debounce(this.onCheck, 200);
@@ -572,9 +613,29 @@ class App {
   update() {
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
-    if (this.medias) {
+    
+    if (this.medias && this.medias.length > 0) {
+      const itemWidth = this.medias[0].width;
+      if (this.dialRef) {
+        const rotation = -(this.scroll.current / itemWidth) * 20;
+        this.dialRef.style.transform = `translate(0px, 200px) rotate(${rotation}deg)`;
+      }
+
+      if (this.numberRef) {
+        let currentIndex = Math.round(this.scroll.current / itemWidth);
+        const totalItems = this.medias.length;
+        let displayIndex = currentIndex % totalItems;
+        if (displayIndex < 0) displayIndex += totalItems;
+        
+        if (this.lastDisplayIndex !== displayIndex) {
+          this.numberRef.textContent = displayIndex;
+          this.lastDisplayIndex = displayIndex;
+        }
+      }
+
       this.medias.forEach(media => media.update(this.scroll, direction));
     }
+    
     this.renderer.render({ scene: this.scene, camera: this.camera });
     this.scroll.last = this.scroll.current;
     this.raf = window.requestAnimationFrame(this.update.bind(this));
@@ -636,6 +697,9 @@ export default function CircularGallery({
   scrollEase = 0.05
 }) {
   const containerRef = useRef(null);
+  const dialRef = useRef(null);
+  const numberRef = useRef(null);
+
   useEffect(() => {
     if (!containerRef.current) return;
     let app;
@@ -649,7 +713,9 @@ export default function CircularGallery({
         borderRadius,
         font: resolvedFont,
         scrollSpeed,
-        scrollEase
+        scrollEase,
+        dialRef: dialRef.current,
+        numberRef: numberRef.current
       });
     });
 
@@ -658,13 +724,16 @@ export default function CircularGallery({
       if (app) app.destroy();
     };
   }, [items, bend, textColor, borderRadius, font, fontUrl, scrollSpeed, scrollEase]);
+  
   return (
     <div
-      className="circular-gallery"
+      className="circular-gallery relative"
       ref={containerRef}
       tabIndex={0}
       role="region"
       aria-label="Circular image gallery. Use left and right arrow keys to navigate."
-    />
+    >
+      <DialOverlay dialRef={dialRef} numberRef={numberRef} />
+    </div>
   );
 }
