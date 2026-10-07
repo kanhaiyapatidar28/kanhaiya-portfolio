@@ -90,6 +90,12 @@
   transform: translate(-50%, -150%) scale(1.8) !important;
 }
 
+.folder.open .paper.active-paper {
+  z-index: 50 !important;
+  transform: translate(-50%, -160%) scale(2.2) !important;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+}
+
 .folder__front {
   position: absolute;
   z-index: 10;
@@ -135,5 +141,10 @@
   
   .folder.open .paper:hover {
     transform: translate(-50%, -120%) scale(1.6) !important;
+  }
+
+  .folder.open .paper.active-paper {
+    z-index: 50 !important;
+    transform: translate(-50%, -140%) scale(2.2) !important;
   }
 }
