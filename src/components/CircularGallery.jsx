@@ -518,46 +518,26 @@ class App {
   onTouchDown(e) {
     this.isDown = true;
     this.scroll.position = this.scroll.current;
-    this.startX = e.touches ? e.touches[0].clientX : e.clientX;
+    this.start = e.touches ? e.touches[0].clientX : e.clientX;
   }
   onTouchMove(e) {
     if (!this.isDown) return;
     const x = e.touches ? e.touches[0].clientX : e.clientX;
     const isMobile = this.screen.width < 768;
     const activeSpeed = isMobile ? this.scrollSpeed * 0.5 : this.scrollSpeed;
-    
-    const distanceX = (this.startX - x) * (activeSpeed * 0.025);
-    
-    this.scroll.target = this.scroll.position + distanceX;
+    const distance = (this.start - x) * (activeSpeed * 0.025);
+    this.scroll.target = this.scroll.position + distance;
   }
   onTouchUp() {
     this.isDown = false;
     this.onCheck();
   }
-  onScroll() {
-    const currentScrollY = window.scrollY;
-    const deltaY = currentScrollY - (this.lastScrollY || 0);
-    this.lastScrollY = currentScrollY;
-
-    if (!this.container) return;
-    const rect = this.container.getBoundingClientRect();
-    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-    
-    if (isVisible) {
-      const isMobile = this.screen.width < 768;
-      const activeSpeed = isMobile ? this.scrollSpeed * 0.5 : this.scrollSpeed;
-      this.scroll.target += deltaY * (activeSpeed * 0.02);
-      this.onCheckDebounce();
-    }
-  }
   onWheel(e) {
-    // Keep wheel for horizontal trackpad scrolling, but vertical is mostly handled by onScroll now
-    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-      const isMobile = this.screen.width < 768;
-      const activeSpeed = isMobile ? this.scrollSpeed * 0.5 : this.scrollSpeed;
-      this.scroll.target += (e.deltaX > 0 ? activeSpeed : -activeSpeed) * 0.2;
-      this.onCheckDebounce();
-    }
+    const delta = e.deltaY || e.wheelDelta || e.detail;
+    const isMobile = this.screen.width < 768;
+    const activeSpeed = isMobile ? this.scrollSpeed * 0.5 : this.scrollSpeed;
+    this.scroll.target += (delta > 0 ? activeSpeed : -activeSpeed) * 0.2;
+    this.onCheckDebounce();
   }
   onKeyDown(e) {
     switch (e.key) {
@@ -645,19 +625,15 @@ class App {
     this.boundOnTouchMove = this.onTouchMove.bind(this);
     this.boundOnTouchUp = this.onTouchUp.bind(this);
     this.boundOnKeyDown = this.onKeyDown.bind(this);
-    this.boundOnScroll = this.onScroll.bind(this);
-    
-    this.lastScrollY = window.scrollY;
 
     window.addEventListener('resize', this.boundOnResize);
     window.addEventListener('mousewheel', this.boundOnWheel);
     window.addEventListener('wheel', this.boundOnWheel);
-    window.addEventListener('scroll', this.boundOnScroll, { passive: true });
     window.addEventListener('mousedown', this.boundOnTouchDown);
     window.addEventListener('mousemove', this.boundOnTouchMove);
     window.addEventListener('mouseup', this.boundOnTouchUp);
-    window.addEventListener('touchstart', this.boundOnTouchDown, { passive: true });
-    window.addEventListener('touchmove', this.boundOnTouchMove, { passive: true });
+    window.addEventListener('touchstart', this.boundOnTouchDown);
+    window.addEventListener('touchmove', this.boundOnTouchMove);
     window.addEventListener('touchend', this.boundOnTouchUp);
 
     this.container?.addEventListener('keydown', this.boundOnKeyDown);
@@ -667,7 +643,6 @@ class App {
     window.removeEventListener('resize', this.boundOnResize);
     window.removeEventListener('mousewheel', this.boundOnWheel);
     window.removeEventListener('wheel', this.boundOnWheel);
-    window.removeEventListener('scroll', this.boundOnScroll);
     window.removeEventListener('mousedown', this.boundOnTouchDown);
     window.removeEventListener('mousemove', this.boundOnTouchMove);
     window.removeEventListener('mouseup', this.boundOnTouchUp);
