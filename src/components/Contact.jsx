@@ -57,7 +57,7 @@ export default function Contact() {
         <div className="text-center mb-16">
           <BlurRevealText
             as="h2"
-            className="text-display font-black tracking-tighter leading-none mb-12"
+            className="text-[12vw] sm:text-6xl md:text-display font-black tracking-tighter leading-none mb-12 px-2"
             scrub={false}
             duration={0.6}
             blurAmount={8}
@@ -73,10 +73,10 @@ export default function Contact() {
               href="https://mail.google.com/mail/?view=cm&fs=1&to=kanheyapatidar32@gmail.com" 
               target="_blank"
               rel="noopener noreferrer"
-              className="magnetic-button p-8 md:p-10 bg-accent rounded-full text-black flex items-center justify-center group shadow-emerald hover:scale-110 transition-transform cursor-pointer"
+              className="magnetic-button p-6 md:p-10 bg-accent rounded-full text-black flex items-center justify-center group shadow-emerald hover:scale-110 transition-transform cursor-pointer"
               title="Open Gmail with To: kanheyapatidar32@gmail.com"
             >
-              <Mail size={44} className="transition-transform group-hover:scale-110" />
+              <Mail className="w-8 h-8 md:w-11 md:h-11 transition-transform group-hover:scale-110" />
             </a>
 
             {/* Explicit Clickable Gmail Address */}
@@ -84,7 +84,7 @@ export default function Contact() {
               href="https://mail.google.com/mail/?view=cm&fs=1&to=kanheyapatidar32@gmail.com" 
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xl md:text-3xl font-mono font-bold text-accent hover:text-white transition-all duration-300 underline underline-offset-8 decoration-accent/50 hover:decoration-white hover:scale-105"
+              className="text-base sm:text-xl md:text-3xl break-all text-center px-4 font-mono font-bold text-accent hover:text-white transition-all duration-300 underline underline-offset-8 decoration-accent/50 hover:decoration-white hover:scale-105"
             >
               kanheyapatidar32@gmail.com
             </a>
