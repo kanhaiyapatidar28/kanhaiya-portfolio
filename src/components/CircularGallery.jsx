@@ -62,8 +62,6 @@ const DialOverlay = ({ dialRef, numberRef }) => {
       </div>
     </div>
   );
-    </div>
-  );
 };
 
 function deriveFontFamilyFromUrl(url) {
