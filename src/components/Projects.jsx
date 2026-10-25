@@ -15,11 +15,11 @@ const projects = [
     color: "#06b6d4",
   },
   {
-    title: "Intelligent Legal Assistance System",
-    subtitle: "NLP Legal & Case Law AI",
-    image: "/Project 2.jpeg",
-    link: "#contact",
-    color: "#a855f7",
+    title: "Tool Sharing Platform",
+    subtitle: "Peer-to-Peer Tool Rental Marketplace",
+    image: "/project 2 main.jpeg",
+    link: "https://tool-sharing-platform.vercel.app/",
+    color: "#ff5a1f",
   },
   {
     title: "Mechanic on Call",
@@ -129,6 +129,8 @@ function ProjectCardItem({ project, index }) {
         <div className="flex-shrink-0">
           <a 
             href={project.link}
+            target={project.link?.startsWith('http') ? "_blank" : undefined}
+            rel={project.link?.startsWith('http') ? "noopener noreferrer" : undefined}
             className="inline-flex items-center justify-center rounded-full bg-accent text-black font-black text-[10px] sm:text-xs md:text-sm uppercase tracking-widest transition-all duration-300 shadow-[0_0_25px_rgba(16,185,129,0.45),inset_0_1.5px_1px_rgba(255,255,255,0.6)] hover:shadow-[0_0_40px_rgba(16,185,129,0.8),inset_0_1.5px_1px_rgba(255,255,255,0.9)] hover:scale-110 active:scale-95 cursor-pointer pointer-events-auto select-none group/btn h-8 sm:h-11 md:h-12 px-4 sm:px-6 md:px-7 gap-1.5 sm:gap-2"
             style={{
               textDecoration: 'none',
