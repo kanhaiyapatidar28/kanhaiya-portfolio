@@ -31,7 +31,7 @@ const projects = [
   {
     title: "DeLance",
     subtitle: "Decentralized Freelance Marketplace",
-    image: "/project 4.jpeg",
+    image: "/Project 4.jpeg",
     link: "https://de-lance.vercel.app/",
     color: "#a855f7",
   },
@@ -106,6 +106,14 @@ function ProjectCardItem({ project, index }) {
           src={project.image} 
           alt={project.title}
           loading="lazy"
+          onError={(e) => {
+            const src = e.currentTarget.getAttribute('src') || ''
+            if (src.includes('/Project 4.jpeg')) {
+              e.currentTarget.src = '/project 4.jpeg'
+            } else if (src.includes('/project 4.jpeg')) {
+              e.currentTarget.src = '/Project 4.jpeg'
+            }
+          }}
           className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover/img:scale-106"
         />
 
