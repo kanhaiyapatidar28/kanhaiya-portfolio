@@ -255,7 +255,7 @@ export default function Hero() {
                 <DitherVeil
                   src="/profile_transparent.png"
                   pattern="floyd"
-                  pixelSize={2}
+                  pixelSize={1}
                   inkColor="#120f17"
                   paperColor="#f4f1ea"
                   revealRadius={200}
