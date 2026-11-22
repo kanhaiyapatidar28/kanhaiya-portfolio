@@ -5,9 +5,6 @@ import {
   ArrowDown, 
   ArrowUpRight, 
   Download, 
-  Shield, 
-  Code, 
-  Award, 
   Linkedin, 
   Github, 
   Mail 
@@ -83,12 +80,6 @@ export default function Hero() {
         { scale: 0.9, opacity: 0 },
         { scale: 1, opacity: 1, duration: 1, ease: 'back.out(1.4)' },
         '-=0.6'
-      )
-      .fromTo(
-        '.floating-badge',
-        { scale: 0, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.6, stagger: 0.2, ease: 'back.out(1.7)' },
-        '-=0.4'
       )
       .fromTo(
         '.stat-item',
@@ -268,37 +259,6 @@ export default function Hero() {
                   fetchPriority="high"
                   decoding="async"
                 />
-              </div>
-
-              {/* Glassmorphic Floating Badges with 3D Parallax */}
-              <div 
-                className="floating-badge badge-top-right transition-transform duration-300"
-                style={{
-                  transform: profileTilt.isHovered ? 'translateZ(50px) translateY(-5px)' : 'translateZ(0px)'
-                }}
-              >
-                <Shield size={16} className="text-accent animate-pulse" />
-                <span>Cybersecurity Enthusiast</span>
-              </div>
-
-              <div 
-                className="floating-badge badge-middle-left transition-transform duration-300"
-                style={{
-                  transform: profileTilt.isHovered ? 'translateZ(45px) translateX(-5px)' : 'translateZ(0px)'
-                }}
-              >
-                <Code size={16} className="text-accent animate-bounce" />
-                <span>Front-End Developer</span>
-              </div>
-
-              <div 
-                className="floating-badge badge-bottom-right transition-transform duration-300"
-                style={{
-                  transform: profileTilt.isHovered ? 'translateZ(55px) translateY(5px)' : 'translateZ(0px)'
-                }}
-              >
-                <Award size={16} className="text-accent" />
-                <span>Problem Solver</span>
               </div>
 
             </div>
