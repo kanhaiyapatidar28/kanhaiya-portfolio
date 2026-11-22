@@ -5,11 +5,18 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const [scrollProgress, setScrollProgress] = useState(0)
   const menuRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30)
+
+      const winScroll = window.scrollY || document.documentElement.scrollTop
+      const height = document.documentElement.scrollHeight - window.innerHeight
+      if (height > 0) {
+        setScrollProgress(Math.min(100, Math.max(0, (winScroll / height) * 100)))
+      }
 
       const sections = ['contact', 'achievements', 'skills', 'about', 'work', 'home']
       const scrollPosition = window.scrollY + 200
@@ -91,7 +98,12 @@ export default function Navbar() {
       <header className={`capsule-nav-wrapper ${isScrolled ? 'scrolled' : ''}`}>
         <nav className="capsule-container" aria-label="Main Navigation">
           
-          {/* Left Pod: Brand / Monogram & Live Vital Status */}
+          {/* Integrated Top Scroll Progress on Navbar Capsule */}
+          <div 
+            className="capsule-progress-fill"
+            style={{ width: `${scrollProgress}%` }}
+            aria-hidden="true"
+          />
           <div className="flex items-center gap-2 sm:gap-3">
             <a 
               href="#home" 

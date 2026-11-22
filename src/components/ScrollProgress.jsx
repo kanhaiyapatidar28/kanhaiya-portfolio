@@ -1,30 +1,54 @@
-import { useEffect, useState } from 'react'
-import gsap from 'gsap'
+import React, { useEffect, useState } from 'react'
 
 export default function ScrollProgress() {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    const onScroll = () => {
-      const winScroll = document.documentElement.scrollTop
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
-      const scrolled = (winScroll / height) * 100
-      setProgress(scrolled)
+    let ticking = false
+
+    const updateProgress = () => {
+      const winScroll = window.scrollY || document.documentElement.scrollTop
+      const height = document.documentElement.scrollHeight - window.innerHeight
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0
+      setProgress(Math.min(100, Math.max(0, scrolled)))
+      ticking = false
     }
 
-    window.addEventListener('scroll', onScroll)
-    return () => window.removeEventListener('scroll', onScroll)
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(updateProgress)
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll, { passive: true })
+    updateProgress()
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
   }, [])
 
   return (
-    <div className="fixed left-6 top-1/2 -translate-y-1/2 w-[2px] h-32 bg-white/10 z-[100] hidden lg:block rounded-full overflow-hidden">
+    <div 
+      className="page-scroll-progress-track"
+      role="progressbar"
+      aria-valuenow={Math.round(progress)}
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-label="Page reading progress"
+    >
       <div 
-        className="w-full bg-accent transition-all duration-100 ease-out"
-        style={{ height: `${progress}%` }}
+        className="page-scroll-progress-bar"
+        style={{ width: `${progress}%` }}
       />
-      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] font-bold text-accent vertical-text">
-        {Math.round(progress)}%
-      </div>
+      {progress > 1 && (
+        <div 
+          className="page-scroll-progress-glow"
+          style={{ left: `${progress}%` }}
+        />
+      )}
     </div>
   )
 }
