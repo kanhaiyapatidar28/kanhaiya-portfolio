@@ -5,17 +5,29 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
-  const [scrollProgress, setScrollProgress] = useState(0)
   const menuRef = useRef(null)
+  const capsuleProgressRef = useRef(null)
 
   useEffect(() => {
+    let lastP = -1
+
+    const updateCapsule = (p) => {
+      const progress = Math.min(1, Math.max(0, p))
+      if (Math.abs(progress - lastP) < 0.0002) return
+      lastP = progress
+      if (capsuleProgressRef.current) {
+        capsuleProgressRef.current.style.transform = `scaleX(${progress})`
+      }
+    }
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30)
 
       const winScroll = window.scrollY || document.documentElement.scrollTop
       const height = document.documentElement.scrollHeight - window.innerHeight
       if (height > 0) {
-        setScrollProgress(Math.min(100, Math.max(0, (winScroll / height) * 100)))
+        const p = (height - winScroll <= 8) ? 1 : winScroll / height
+        updateCapsule(p)
       }
 
       const sections = ['contact', 'achievements', 'skills', 'about', 'work', 'home']
@@ -100,8 +112,9 @@ export default function Navbar() {
           
           {/* Integrated Top Scroll Progress on Navbar Capsule */}
           <div 
+            ref={capsuleProgressRef}
             className="capsule-progress-fill"
-            style={{ width: `${scrollProgress}%` }}
+            style={{ transform: 'scaleX(0)' }}
             aria-hidden="true"
           />
           <div className="flex items-center gap-2 sm:gap-3">
