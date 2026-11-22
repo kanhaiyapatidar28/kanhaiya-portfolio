@@ -311,8 +311,8 @@ a {
 }
 @media (min-width: 1024px) {
   .hero-grid {
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 3.5rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
   }
 }
 
@@ -411,7 +411,7 @@ a {
 .profile-visuals-wrapper {
   position: relative;
   width: 100%;
-  max-width: 600px;
+  max-width: 740px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -420,11 +420,11 @@ a {
 
 .profile-glow {
   position: absolute;
-  width: 480px;
-  height: 480px;
+  width: 660px;
+  height: 660px;
   background: radial-gradient(circle, rgba(16, 185, 129, 0.25) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 70%);
   border-radius: 50%;
-  filter: blur(50px);
+  filter: blur(60px);
   z-index: 0;
   pointer-events: none;
 }
@@ -444,9 +444,9 @@ a {
   border-radius: 50%;
   border: 1px dashed rgba(16, 185, 129, 0.2);
 }
-.radar-circle-1 { width: 320px; height: 320px; animation: rotateRadar 30s linear infinite; }
-.radar-circle-2 { width: 440px; height: 440px; border-style: dotted; border-color: rgba(255, 255, 255, 0.08); animation: rotateRadarRev 40s linear infinite; }
-.radar-circle-3 { width: 560px; height: 560px; border-color: rgba(16, 185, 129, 0.12); }
+.radar-circle-1 { width: 440px; height: 440px; animation: rotateRadar 30s linear infinite; }
+.radar-circle-2 { width: 600px; height: 600px; border-style: dotted; border-color: rgba(255, 255, 255, 0.08); animation: rotateRadarRev 40s linear infinite; }
+.radar-circle-3 { width: 760px; height: 760px; border-color: rgba(16, 185, 129, 0.12); }
 
 @keyframes rotateRadar {
   from { transform: rotate(0deg); }
@@ -459,13 +459,17 @@ a {
 
 .profile-img-container {
   position: relative;
-  width: 440px;
-  height: 440px;
+  width: 640px;
+  height: 680px;
   max-width: 100%;
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.profile-img-container canvas {
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8));
 }
 
 .profile-img {
@@ -519,11 +523,11 @@ a {
 }
 
 @media (max-width: 768px) {
-  .profile-glow { width: 280px; height: 280px; }
-  .radar-circle-1 { width: 240px; height: 240px; }
-  .radar-circle-2 { width: 300px; height: 300px; }
-  .radar-circle-3 { width: 360px; height: 360px; }
-  .profile-img-container { width: 280px; height: 280px; }
+  .profile-glow { width: 360px; height: 360px; }
+  .radar-circle-1 { width: 280px; height: 280px; }
+  .radar-circle-2 { width: 360px; height: 360px; }
+  .radar-circle-3 { width: 440px; height: 440px; }
+  .profile-img-container { width: 360px; height: 420px; max-width: 92vw; }
   .badge-top-right { top: -2%; right: 0%; font-size: 0.7rem; padding: 0.4rem 0.8rem; }
   .badge-middle-left { top: 48%; left: -2%; font-size: 0.7rem; padding: 0.4rem 0.8rem; }
   .badge-bottom-right { bottom: -2%; right: 0%; font-size: 0.7rem; padding: 0.4rem 0.8rem; }

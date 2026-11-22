@@ -10,6 +10,7 @@ import {
   Mail 
 } from 'lucide-react'
 import BlurRevealText from './BlurRevealText'
+import DitherVeil from './DitherVeil'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -244,20 +245,33 @@ export default function Hero() {
                 <div className="radar-circle radar-circle-3" />
               </div>
 
-              {/* Core Profile Image with 3D Depth */}
+              {/* Core Profile Image with 3D Depth & DitherVeil Interactive Effect */}
               <div 
                 className="profile-img-container transition-transform duration-300"
                 style={{
                   transform: profileTilt.isHovered ? 'translateZ(30px)' : 'translateZ(0px)'
                 }}
               >
-                <img 
-                  src="/profile_transparent.png" 
-                  alt="Kanhaiya Patidar" 
-                  className="profile-img"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
+                <DitherVeil
+                  src="/profile_transparent.png"
+                  pattern="floyd"
+                  pixelSize={2}
+                  inkColor="#120f17"
+                  paperColor="#f4f1ea"
+                  revealRadius={200}
+                  softness={0.6}
+                  linger={1}
+                  fit="contain"
+                  rimColor="#a78bfa"
+                  palette="duotone"
+                  levels={2}
+                  contrast={1.15}
+                  brightness={0}
+                  rim={0}
+                  reverse={false}
+                  wander={false}
+                  clickBurst
+                  transparent={true}
                 />
               </div>
 
