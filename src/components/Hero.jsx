@@ -240,6 +240,9 @@ export default function Hero() {
 
               {/* Concentric Radar Rings */}
               <div className="radar-circles-container">
+                <div className="radar-sweep" />
+                <div className="radar-axis-h" />
+                <div className="radar-axis-v" />
                 <div className="radar-circle radar-circle-1" />
                 <div className="radar-circle radar-circle-2" />
                 <div className="radar-circle radar-circle-3" />

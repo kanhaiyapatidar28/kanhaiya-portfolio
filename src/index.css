@@ -429,6 +429,7 @@ a {
   pointer-events: none;
 }
 
+/* CONCENTRIC RADAR RINGS & TELEMETRY */
 .radar-circles-container {
   position: absolute;
   inset: 0;
@@ -439,14 +440,116 @@ a {
   z-index: 1;
 }
 
+/* Subtle Rotating Radar Scanner Sweep */
+.radar-sweep {
+  position: absolute;
+  width: 760px;
+  height: 760px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    rgba(16, 185, 129, 0.15) 0deg,
+    rgba(16, 185, 129, 0.04) 35deg,
+    transparent 75deg,
+    transparent 360deg
+  );
+  animation: radarSweep 8s linear infinite;
+  mask-image: radial-gradient(circle, transparent 20%, black 75%);
+  -webkit-mask-image: radial-gradient(circle, transparent 20%, black 75%);
+}
+
+@keyframes radarSweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Radar Coordinate Crosshair Axes */
+.radar-axis-h {
+  position: absolute;
+  width: 760px;
+  max-width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(16, 185, 129, 0.12) 15%,
+    rgba(16, 185, 129, 0.22) 50%,
+    rgba(16, 185, 129, 0.12) 85%,
+    transparent
+  );
+}
+
+.radar-axis-v {
+  position: absolute;
+  height: 760px;
+  max-height: 100%;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(16, 185, 129, 0.12) 15%,
+    rgba(16, 185, 129, 0.22) 50%,
+    rgba(16, 185, 129, 0.12) 85%,
+    transparent
+  );
+}
+
 .radar-circle {
   position: absolute;
   border-radius: 50%;
-  border: 1px dashed rgba(16, 185, 129, 0.2);
+  box-sizing: border-box;
 }
-.radar-circle-1 { width: 440px; height: 440px; animation: rotateRadar 30s linear infinite; }
-.radar-circle-2 { width: 600px; height: 600px; border-style: dotted; border-color: rgba(255, 255, 255, 0.08); animation: rotateRadarRev 40s linear infinite; }
-.radar-circle-3 { width: 760px; height: 760px; border-color: rgba(16, 185, 129, 0.12); }
+
+.radar-circle-1 {
+  width: 440px;
+  height: 440px;
+  border: 1px dashed rgba(16, 185, 129, 0.25);
+  animation: rotateRadar 35s linear infinite;
+}
+
+.radar-circle-1::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #10b981, 0 0 20px #10b981;
+  animation: blipPulse 2.5s ease-in-out infinite;
+}
+
+.radar-circle-2 {
+  width: 600px;
+  height: 600px;
+  border: 1px dotted rgba(255, 255, 255, 0.14);
+  animation: rotateRadarRev 45s linear infinite;
+}
+
+.radar-circle-2::after {
+  content: '';
+  position: absolute;
+  bottom: 18%;
+  right: 12%;
+  width: 6px;
+  height: 6px;
+  background: rgba(16, 185, 129, 0.7);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+}
+
+.radar-circle-3 {
+  width: 760px;
+  height: 760px;
+  border: 1px solid rgba(16, 185, 129, 0.14);
+  box-shadow: 0 0 35px rgba(16, 185, 129, 0.05), inset 0 0 35px rgba(16, 185, 129, 0.03);
+}
+
+@keyframes blipPulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.25); }
+}
 
 @keyframes rotateRadar {
   from { transform: rotate(0deg); }
@@ -480,57 +583,120 @@ a {
   transition: transform 0.5s ease;
 }
 
-/* FLOATING BADGES */
-.floating-badge {
-  position: absolute;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.65rem 1.25rem;
-  background: rgba(10, 15, 25, 0.85);
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  border-radius: 9999px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(16, 185, 129, 0.15);
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  animation: floatBadge 4s ease-in-out infinite;
-}
-.badge-top-right {
-  top: 8%;
-  right: -2%;
-  animation-delay: 0s;
-}
-.badge-middle-left {
-  top: 48%;
-  left: -8%;
-  animation-delay: 1.5s;
-}
-.badge-bottom-right {
-  bottom: 8%;
-  right: 0%;
-  animation-delay: 2.5s;
+/* ==================== RADAR & HERO RESPONSIVENESS ==================== */
+
+/* Standard Laptop Screens (1024px to 1366px) */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  .hero-grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 2rem;
+  }
+  .profile-visuals-wrapper {
+    max-width: 580px;
+  }
+  .profile-img-container {
+    width: 500px;
+    height: 540px;
+  }
+  .profile-glow {
+    width: 520px;
+    height: 520px;
+  }
+  .radar-sweep,
+  .radar-axis-h,
+  .radar-axis-v,
+  .radar-circle-3 {
+    width: 590px;
+    height: 590px;
+  }
+  .radar-circle-2 {
+    width: 470px;
+    height: 470px;
+  }
+  .radar-circle-1 {
+    width: 350px;
+    height: 350px;
+  }
 }
 
-@keyframes floatBadge {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+/* Large Laptop / Mid-Desktop (1367px to 1535px) */
+@media (min-width: 1367px) and (max-width: 1535px) {
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  .profile-visuals-wrapper {
+    max-width: 660px;
+  }
+  .profile-img-container {
+    width: 570px;
+    height: 610px;
+  }
+  .profile-glow {
+    width: 590px;
+    height: 590px;
+  }
+  .radar-sweep,
+  .radar-axis-h,
+  .radar-axis-v,
+  .radar-circle-3 {
+    width: 670px;
+    height: 670px;
+  }
+  .radar-circle-2 {
+    width: 530px;
+    height: 530px;
+  }
+  .radar-circle-1 {
+    width: 390px;
+    height: 390px;
+  }
 }
 
+/* Tablet Screens (769px to 1023px) */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .profile-visuals-wrapper {
+    max-width: 540px;
+  }
+  .profile-img-container {
+    width: 470px;
+    height: 510px;
+  }
+  .profile-glow {
+    width: 490px;
+    height: 490px;
+  }
+  .radar-sweep,
+  .radar-axis-h,
+  .radar-axis-v,
+  .radar-circle-3 {
+    width: 540px;
+    height: 540px;
+  }
+  .radar-circle-2 {
+    width: 430px;
+    height: 430px;
+  }
+  .radar-circle-1 {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+/* Mobile Screens (max-width: 768px) */
 @media (max-width: 768px) {
-  .profile-glow { width: 360px; height: 360px; }
-  .radar-circle-1 { width: 280px; height: 280px; }
-  .radar-circle-2 { width: 360px; height: 360px; }
-  .radar-circle-3 { width: 440px; height: 440px; }
-  .profile-img-container { width: 360px; height: 420px; max-width: 92vw; }
-  .badge-top-right { top: -2%; right: 0%; font-size: 0.7rem; padding: 0.4rem 0.8rem; }
-  .badge-middle-left { top: 48%; left: -2%; font-size: 0.7rem; padding: 0.4rem 0.8rem; }
-  .badge-bottom-right { bottom: -2%; right: 0%; font-size: 0.7rem; padding: 0.4rem 0.8rem; }
+  .profile-glow { width: 340px; height: 340px; }
+  .radar-sweep,
+  .radar-axis-h,
+  .radar-axis-v,
+  .radar-circle-3 { width: 410px; height: 410px; }
+  .radar-circle-2 { width: 330px; height: 330px; }
+  .radar-circle-1 { width: 250px; height: 250px; }
+  .profile-img-container { width: 340px; height: 390px; max-width: 92vw; }
 }
 
 /* ==================== PROJECTS FLOATING PHOTO ==================== */
