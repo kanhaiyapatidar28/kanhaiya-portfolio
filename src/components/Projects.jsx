@@ -139,37 +139,13 @@ function ProjectCardItem({ project, index }) {
             href={project.link}
             target={project.link?.startsWith('http') ? "_blank" : undefined}
             rel={project.link?.startsWith('http') ? "noopener noreferrer" : undefined}
-            className="inline-flex items-center justify-center rounded-full bg-accent text-black font-black text-[10px] sm:text-xs md:text-sm uppercase tracking-widest transition-all duration-300 shadow-[0_0_25px_rgba(16,185,129,0.45),inset_0_1.5px_1px_rgba(255,255,255,0.6)] hover:shadow-[0_0_40px_rgba(16,185,129,0.8),inset_0_1.5px_1px_rgba(255,255,255,0.9)] hover:scale-110 active:scale-95 cursor-pointer pointer-events-auto select-none group/btn h-8 sm:h-11 md:h-12 px-4 sm:px-6 md:px-7 gap-1.5 sm:gap-2"
-            style={{
-              textDecoration: 'none',
-              whiteSpace: 'nowrap',
-              boxSizing: 'border-box',
-            }}
+            className="project-visit-btn"
           >
-            <span 
-              style={{ 
-                display: 'inline-block',
-                lineHeight: 1,
-                letterSpacing: '0.08em',
-              }}
-            >
-              Visit
-            </span>
-            <span 
-              style={{ 
-                display: 'inline-flex', 
-                alignItems: 'center', 
-                justifyContent: 'center',
-                lineHeight: 1,
-              }}
-            >
+            <span className="project-visit-btn-text">Visit</span>
+            <span className="project-visit-btn-icon">
               <ArrowUpRight 
-                strokeWidth={2.8}
-                className="transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 w-3 sm:w-4 md:w-4.5 h-3 sm:h-4 md:h-4.5" 
-                style={{ 
-                  display: 'block',
-                  flexShrink: 0,
-                }} 
+                size={15} 
+                strokeWidth={2.8} 
               />
             </span>
           </a>
